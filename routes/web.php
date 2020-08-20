@@ -32,3 +32,7 @@ Route::get('type/{id}', 'TypeController@show');
 // display Locality
 Route::get('locality', 'LocalityController@index');
 Route::get('locality/{id}', 'LocalityController@show');
+
+// display Location
+Route::get('location', 'LocationController@index');
+Route::get('location/{id}', 'LocationController@show');
