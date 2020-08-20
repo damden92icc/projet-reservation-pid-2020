@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             TypesTableSeeder::class,
             LocalitiesTableSeeder::class,
             RolesTableSeeder::class,
+            LocationsTableSeeder::class,
         ]);
     }
 }

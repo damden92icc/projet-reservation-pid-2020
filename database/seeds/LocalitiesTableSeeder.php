@@ -14,8 +14,11 @@ class LocalitiesTableSeeder extends Seeder
     {
         {
             // reset the table frst
+            DB::statement('SET FOREIGN_KEY_CHECKS = 0');
             Locality::truncate();
-     
+            
+            DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
             // Create temp data
             $localities = [
                 ['postal_code'=> '1200', 'locality'=>'WSL'],
