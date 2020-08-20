@@ -20,13 +20,14 @@ class CreateLocationsTable extends Migration
             $table->string('designation', 60);
             $table->string('address', 255);
         
+            // FK
            $table-> unsignedInteger('locality_id');
-
+           $table->foreign('locality_id')->references('id')->on('localities')->onDelete('restrict')->onUpdate('cascade');
 
             $table->string('website', 255)->nullable();
             $table->string('phone', 30)->nullable();
 
-            $table->foreign('locality_id')->references('id')->on('localities');
+         
 
             
 
