@@ -26,7 +26,7 @@ class LocalitiesTableSeeder extends Seeder
                 ['postal_code'=> '1030', 'locality'=>'Schaarbeak'],
                 ['postal_code'=> '1040', 'locality'=>'Etterbeek'],
                 ['postal_code'=> '1050', 'locality'=>'Ixelles'],
-
+                ['postal_code'=> '1170', 'locality'=>'watermael-boitsfort'],
             ];
      
             // Insert data into the table
