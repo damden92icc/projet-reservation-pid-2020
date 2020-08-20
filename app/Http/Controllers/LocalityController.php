@@ -55,6 +55,8 @@ class LocalityController extends Controller
         return view ('locality.show',[
             'locality' => $locality,
         ]);
+
+        
     }
 
     /**
