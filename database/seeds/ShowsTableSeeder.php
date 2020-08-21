@@ -15,7 +15,10 @@ class ShowsTableSeeder extends Seeder
     public function run()
     {
          // reset the table frst
-       Show::truncate();
+         
+        DB::statement('SET FOREIGN_KEY_CHECKS =0');
+        Show::truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
        // Defining data
        $shows = [

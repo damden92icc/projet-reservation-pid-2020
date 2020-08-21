@@ -1,0 +1,43 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Representation extends Model
+{
+        /**
+    * Updatable attributes 
+    */
+
+    protected $fillable = [
+        'show_id', 'when',  'location_id',
+    ];
+
+     /**
+     * Related table
+     */
+    protected $table = 'representations';
+
+         /**
+      * Model timestamped : off
+      * @var bool
+      */
+
+      public $timestamps = true;
+
+      /**
+       * Get the current location of representation
+       */
+      public function location(){
+          return $this->belongsTo('App\Location');
+      }
+
+      /**
+       * Get the show of the representation
+       */
+
+       public function show(){
+           return $this->belongsTo('App\Show');
+       }
+}
