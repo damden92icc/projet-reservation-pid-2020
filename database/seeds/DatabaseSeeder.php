@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             ShowsTableSeeder::class,
             RepresentationTableSeeder::class,
             ArtistTypeTableSeeder::class,
+            ArtistTypeShowTableSeeder::class,
         ]);
     }
 }

@@ -53,14 +53,44 @@ class ArtistTypeTableSeeder extends Seeder
                     'type'=> 'auteur',
                 ],
                 [
+                    'artist_firstname'=> 'Marius',
+                    'artist_lastname'=> 'Von May',
+                    'type'=> 'comedien',
+                ],
+                [
+                    'artist_firstname'=> 'Marius',
+                    'artist_lastname'=> 'Von May',
+                    'type'=> 'scenographe',
+                ],
+                [
                     'artist_firstname'=> 'Olivier',
                     'artist_lastname'=> 'Boudon',
                     'type'=> 'auteur',
                 ],
                 [
+                    'artist_firstname'=> 'Olivier',
+                    'artist_lastname'=> 'Boudon',
+                    'type'=> 'comedien',
+                ],
+                [
+                    'artist_firstname'=> 'Olivier',
+                    'artist_lastname'=> 'Boudon',
+                    'type'=> 'scenographe',
+                ],
+                [
                     'artist_firstname'=> 'Anne Marie',
                     'artist_lastname'=> 'Manon',
                     'type'=> 'comedien',
+                ],
+                [
+                    'artist_firstname'=> 'Anne Marie',
+                    'artist_lastname'=> 'Manon',
+                    'type'=> 'auteur',
+                ],
+                [
+                    'artist_firstname'=> 'Anne Marie',
+                    'artist_lastname'=> 'Manon',
+                    'type'=> 'scenographe',
                 ],
               ];
 
