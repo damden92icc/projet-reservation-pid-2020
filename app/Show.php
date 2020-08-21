@@ -36,4 +36,12 @@ class Show extends Model
     public function representation(){
       return $this->hasMany('App\Representation');
     }
+
+    /**
+     * Get the performance artist in his a type of collobaration
+     */
+
+     public function artistType(){
+       return $this->belongTo('App\ArtistType');
+     }
 }
