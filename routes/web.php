@@ -40,3 +40,7 @@ Route::get('location/{id}', 'LocationController@show');
 // display show
 Route::get('show', 'ShowController@index');
 Route::get('show/{id}', 'ShowController@show');
+
+// display representations
+Route::get('representation', 'RepresentationController@index');
+Route::get('representation/{id}', 'RepresentationController@show');
