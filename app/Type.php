@@ -26,4 +26,12 @@ class Type extends Model
 
       public $timestamps = false;
 
+
+      /**
+       * Artist defined by the type
+       */
+
+       public function artists(){
+           return $this->belongsToMany('App\Artist');
+       }
 }
