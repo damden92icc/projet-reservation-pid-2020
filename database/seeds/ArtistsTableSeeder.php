@@ -13,14 +13,18 @@ class ArtistsTableSeeder extends Seeder
     public function run()
     {
         // reset the table frst
+           // reset the table frst
+       DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Artist::truncate();
+   // reset the table frst
+   DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 
         // Create temp data
         $artists = [
             ['firstname'=> 'Daniel', 'lastname'=>'Marcelin'],
             ['firstname'=> 'Phillipe', 'lastname'=>'Laurent'],
-            ['firstname'=> 'Marius', 'lastname'=>'Marcelin'],
-            ['firstname'=> 'Oliver', 'lastname'=>'Marcelin'],
+            ['firstname'=> 'Marius', 'lastname'=>'Von May'],
+            ['firstname'=> 'Oliver', 'lastname'=>'Von May'],
             ['firstname'=> 'Anne Marie', 'lastname'=>'Marcelin'],
             ['firstname'=> 'Pietro', 'lastname'=>'Marcelin'],
             ['firstname'=> 'Laurent', 'lastname'=>'Marcelin'],
@@ -30,6 +34,11 @@ class ArtistsTableSeeder extends Seeder
             ['firstname'=> 'Laurence', 'lastname'=>'Marcelin'],
             ['firstname'=> 'Pierre', 'lastname'=>'Marcelin'],
             ['firstname'=> 'Gwendoline', 'lastname'=>'Marcelin'],
+
+            ['firstname'=> 'Anne Marie', 'lastname'=>'Manon'],
+            ['firstname'=> 'Olivier', 'lastname'=>'Boudon'],
+
+
         ];
 
         // Insert data into the table
