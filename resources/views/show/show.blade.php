@@ -26,4 +26,16 @@
             <span> sold out </span>
        @endif
 
+
+     <h2> Liste des representations </h2>
+
+     @if($show->representation->count() >= 1 )
+          <ul>
+          @foreach($show->representation as $representation)
+          <li> {{$representation->when}} </li>
+          @endforeach
+          </ul>
+     @endif
+
+
 @endsection
