@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'liste des lieux des spectacle')
+@section('title', 'liste des spectacle')
 
 @section('content')
 
@@ -12,11 +12,24 @@
     <li>
        {{$show->title}}
 
+
        @if($show->bookable)
         <span>{{$show->price}} </span>
         @else 
             <span> sold out </span>
        @endif
+
+
+    @if($show->representation->count()==1)
+    
+    - <span> 1 representation </span>
+    @elseif($show->representation->count()>1)
+    - <span> {{$show->representation->count()}} Representation </span>
+    @else
+    - <em> aucune representation </em>
+    @endif
+
+
     </li>
 @endforeach
 </ul>
