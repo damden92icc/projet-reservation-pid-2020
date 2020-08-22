@@ -28,10 +28,11 @@ class ArtistType extends Model
 
       /**
        *  Get the show of the performance 
+       * doc : https://laravel.com/docs/7.x/eloquent-relationships#one-to-many-inverse
        */
 
        public function show(){
-           return $this->belongsToMany('App\Show');
+           return $this->belongsToMany('App\Show', 'artist_type_shows');
        }
 
        /**
@@ -50,4 +51,5 @@ class ArtistType extends Model
             return $this->belongsTo('App\Type');
         }
 
+      
 }

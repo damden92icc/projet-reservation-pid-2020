@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\ArtistType;
+use App\Artist;
 
 class Show extends Model
 {
@@ -42,6 +44,10 @@ class Show extends Model
      */
 
      public function artistType(){
-       return $this->belongTo('App\ArtistType');
+       return $this->belongsToMany('App\ArtistType');
      }
+
+    
+     
+    
 }

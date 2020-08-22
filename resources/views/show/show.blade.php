@@ -37,5 +37,45 @@
           </ul>
      @endif
 
+     <h2> Liste des artistes </h2>
+     
+    <p> Auteurs </p>
+
+
+    @foreach($collaborateurs['auteur'] as $auteur)
+        {{$auteur->firstname}}
+        {{$auteur->lastname}}
+
+        @if($loop->iteration == $loop->count-1) 
+        et
+        @elseif(!$loop->last),
+        @endif
+    @endforeach
+
+    <p> Metteur en scene </p>
+
+
+    @foreach($collaborateurs['scenographe'] as $sceno)
+        {{$sceno->firstname}}
+        {{$sceno->lastname}}
+
+        @if($loop->iteration == $loop->count-1) 
+        et
+        @elseif(!$loop->last),
+        @endif
+    @endforeach
+
+    <p>Distribution: </p>
+
+
+    @foreach($collaborateurs['comedien'] as $comm)
+        {{$comm->firstname}}
+        {{$comm->lastname}}
+
+        @if($loop->iteration == $loop->count-1) 
+        et
+        @elseif(!$loop->last),
+        @endif
+    @endforeach
 
 @endsection
