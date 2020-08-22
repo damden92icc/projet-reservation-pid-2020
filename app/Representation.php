@@ -40,4 +40,12 @@ class Representation extends Model
        public function show(){
            return $this->belongsTo('App\Show');
        }
+
+       /**
+        * Links to users
+        */
+
+        public function user(){
+            return $this->belongsToMany('App\User');
+        }
 }
