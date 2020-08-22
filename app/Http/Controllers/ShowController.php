@@ -51,10 +51,24 @@ class ShowController extends Controller
     public function show($id)
     {
         //
-        $show= Show::find($id);
+        $show = Show::find($id);
+
+        // Retrieve all artist from show and group by type
+        $collaborateurs = [];
+
+
+       
+        foreach( $show->artistType as $at){
+            $collaborateurs[$at->type->type][] = $at->artist;
+        
+        }
+        
+       // dd($collaborateurs);
+    
 
         return view('show.show',[
             'show' => $show,
+            'collaborateurs'=> $collaborateurs,
         ]);
     }
 
