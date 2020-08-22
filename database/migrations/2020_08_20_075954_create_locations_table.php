@@ -21,7 +21,7 @@ class CreateLocationsTable extends Migration
             $table->string('address', 255);
         
             // FK
-           $table-> unsignedInteger('locality_id');
+           $table-> unsignedBigInteger('locality_id');
            $table->foreign('locality_id')->references('id')->on('localities')->onDelete('restrict')->onUpdate('cascade');
 
             $table->string('website', 255)->nullable();

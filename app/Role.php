@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\User;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,4 +26,9 @@ class Role extends Model
       */
 
       public $timestamps = false;
+
+      public function role(){
+            return $this->belongsToMany('App\User');
+      }
+
 }

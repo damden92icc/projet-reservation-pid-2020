@@ -13,8 +13,11 @@ class RolesTableSeeder extends Seeder
     public function run()
     {
         // reset the table frst
-        Role::truncate();
- 
+
+        DB::statement('SET FOREIGN_KEY_CHECKS =0');
+                Role::truncate();
+                DB::statement('SET FOREIGN_KEY_CHECKS =0');
+                
         // Create temp data
         $roles = [
             ['role'=> 'admin'],
