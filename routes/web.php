@@ -41,6 +41,16 @@ Route::get('location/{id}', 'LocationController@show');
 Route::get('show', 'ShowController@index');
 Route::get('show/{id}', 'ShowController@show');
 
+/**
+ * 
+ *  Route for logged user
+ * */
+Route::get('profil', 'ProfilController@index');
+
+
 // display representations
 Route::get('representation', 'RepresentationController@index');
 Route::get('representation/{id}', 'RepresentationController@show');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
