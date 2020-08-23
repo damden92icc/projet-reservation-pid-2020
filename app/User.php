@@ -54,4 +54,13 @@ class User extends Authenticatable
      public function representation(){
             return $this->belongsToMany('App\Representation');
      }
+
+     /**
+      * function to return all user profil when login is provided
+      * used for profil page
+      */
+    
+      public function getRouteKeyName(){
+          return 'login';
+      }
 }
