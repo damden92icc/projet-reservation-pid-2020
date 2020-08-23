@@ -13,44 +13,67 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+/**
+ * 
+ *  Route for non logged user
+ * */
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-// display artist 
-Route::get('artist', 'ArtistController@index');
-Route::get('artist/{id}', 'ArtistController@show');
+        Route::get('/home', 'HomeController@index')->name('home');
 
-// display User role
-Route::get('role', 'RoleController@index');
-Route::get('role/{id}', 'RoleController@show');
 
-// Display Artist Type
-Route::get('type', 'TypeController@index');
-Route::get('type/{id}', 'TypeController@show');
+        // display artist 
+        Route::get('artists', ['as'=>'artists', 'uses'=>'ArtistController@index']);
+        Route::get('artist/{id}}', ['as'=>'artist', 'uses'=>'ArtistController@show']);
 
-// display Locality
-Route::get('locality', 'LocalityController@index');
-Route::get('locality/{id}', 'LocalityController@show');
 
-// display Location
-Route::get('location', 'LocationController@index');
-Route::get('location/{id}', 'LocationController@show');
+        // Display Artist Type
+        Route::get('type', 'TypeController@index');
+        Route::get('type/{id}', 'TypeController@show');
 
-// display show
-Route::get('show', 'ShowController@index');
-Route::get('show/{id}', 'ShowController@show');
+        // display Locality
+        Route::get('locality', 'LocalityController@index');
+        Route::get('locality/{id}', 'LocalityController@show');
+
+        // display Location
+        Route::get('location', 'LocationController@index');
+        Route::get('location/{id}', 'LocationController@show');
+
+        // display show
+        Route::get('show', ['as'=>'shows', 'uses'=>'ShowController@index']);
+        Route::get('show/{id}', ['as'=>'show', 'uses'=>'ShowController@show']);
+       
+
+
+        // display representations
+        Route::get('representation', 'RepresentationController@index');
+        Route::get('representation/{id}', 'RepresentationController@show');
+
+        // Display Optional page
+        Route::get('a-propos', ['as'=>'about', 'uses'=>'PagesController@about']);
+        Route::get('contact', ['as'=>'contact', 'uses'=>'PagesController@contact']);
+
+        Auth::routes();
+
 
 /**
  * 
  *  Route for logged user
  * */
-Route::get('profil', 'ProfilController@index');
 
 
-// display representations
-Route::get('representation', 'RepresentationController@index');
-Route::get('representation/{id}', 'RepresentationController@show');
-Auth::routes();
+/**
+ * 
+ *  Route for admin
+ * */
 
-Route::get('/home', 'HomeController@index')->name('home');
+// display User role
+Route::get('role', 'RoleController@index');
+Route::get('role/{id}', 'RoleController@show');
+
+
