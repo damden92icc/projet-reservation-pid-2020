@@ -10,7 +10,7 @@
 <br/>
 
     <h2> Trié les spectacle </h2>
-    <input >
+    <input type="text" name="search_show" id="searchShow" class="form-control" />
 
     <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="70%">
     <thead>
@@ -62,3 +62,4 @@
 {{$shows->links()}}
 
 @endsection
+
