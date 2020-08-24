@@ -43,5 +43,6 @@
 @endforeach
 </ul>
 
+{{$shows->links()}}
 
 @endsection
