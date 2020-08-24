@@ -45,7 +45,7 @@ Route::get('/', function () {
         Route::get('location/{id}', 'LocationController@show');
 
         // display show
-        Route::get('show', ['as'=>'shows', 'uses'=>'ShowController@index']);
+        Route::get('shows', ['as'=>'shows', 'uses'=>'ShowController@index']);
         Route::get('show/{id}', ['as'=>'show', 'uses'=>'ShowController@show']);
        
 
