@@ -66,10 +66,11 @@ Route::get('/', function () {
  *  Route for logged user
  * */
 
- // Display Profil
+ // Display Profil and update
 
 Route::get('/profil/{user}',  ['as'=>'my profil', 'uses'=>'ProfilController@show']);
-Route::get('profile/{id}/update',  ['as'=>'profil update', 'uses'=>'ProfilController@contact']);
+Route::get('profil/{user}/edit',  ['as'=>'profil edit', 'uses'=>'ProfilController@edit']);
+Route::patch('profil/{user}',  ['as'=>'profil update', 'uses'=>'ProfilController@update']);
 
 /**
  * 
