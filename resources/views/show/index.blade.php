@@ -10,8 +10,6 @@
 <br/>
 
     <h2> Trié les spectacle </h2>
-    <input >
-
   
 
 <table id="show-listing" class="table" >
@@ -21,6 +19,8 @@
         <th>Description</th>
         <th>Bookable</th>
         <th>Price</th>
+        <th></th>
+    
       </tr>
     </thead>
   </table>
@@ -29,6 +29,9 @@
 
     
 
+  <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
 
 
@@ -47,17 +50,10 @@ function feedingData (){
                 url: "{{ route('shows-json') }}",
             } ,
             columns : [
-              
             {"data": "title"},
             {"data": "description"},
             {"data": "price"},
             {"data": "bookable"},
-              {
-                data: 'action', 
-                name: 'action', 
-                orderable: true, 
-                searchable: true
-            }
             ]
         });
 };

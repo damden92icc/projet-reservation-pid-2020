@@ -16,13 +16,10 @@ class ShowController extends Controller
     public function index()
     {
         $shows = Show::paginate(5);
-        
         return view ('show.index', [
                     'shows'=> $shows,
                     'resource'=> 'spectacle',
-                    ]);
-            
-                  
+                    ]);                 
     }
 
     /**
@@ -32,7 +29,8 @@ class ShowController extends Controller
      */
     public function create()
     {
-        //
+        return view ('show.create', [
+            ]);  
     }
 
     /**
@@ -43,7 +41,7 @@ class ShowController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //      'slug', 'title', 'description', 'poster_url', 'location_id', 'bookable','price',
     }
 
     /**
@@ -54,14 +52,10 @@ class ShowController extends Controller
      */
     public function show($id)
     {
-        //
         $show = Show::find($id);
-
         // Retrieve all artist from show and group by type
         $collaborateurs = [];
 
-
-       
         foreach( $show->artistType as $at){
             $collaborateurs[$at->type->type][] = $at->artist;
         
@@ -113,7 +107,7 @@ class ShowController extends Controller
     
     public function indexAjax(){
 
-               $shows = Show::select ('title', 'description', 'price', 'bookable' );
+               $shows = Show::(selec)t ('title', 'description', 'price', 'bookable' );
 
         return Datatables::of($shows)->make(true);
             

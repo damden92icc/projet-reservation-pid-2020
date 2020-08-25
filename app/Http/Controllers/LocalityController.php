@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Locality;
 
@@ -28,7 +28,7 @@ class LocalityController extends Controller
      */
     public function create()
     {
-        //
+        return view('locality.create');
     }
 
     /**
@@ -39,7 +39,29 @@ class LocalityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+          //
+          $messages = [
+            'required' => 'Ce champs ne peut etre vide',
+            'integer'=>'code postal invalide'
+        ];
+
+        $rules = [
+            'postal_code'=>'required|integer',
+            'locality'=> 'required|max:200',
+        ];
+
+        Validator::make($request->all(), $rules, $messages)->validate();
+
+        $newLocality = new Locality();
+
+        $newLocality->postal_code = $request->input('postal_code');
+        $newLocality->locality = $request->input('locality');
+
+        $newLocality->save();
+
+
+        return redirect()->intended('/locality/'. $newLocality->id);
+    
     }
 
     /**
@@ -91,5 +113,10 @@ class LocalityController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function selectJson(Request $request){
+        return Locality::where('locality','like','%'.$request->input('search').'%')
+        ->orWhere('postal_code', '=', $request->input('search'))->get();
     }
 }
