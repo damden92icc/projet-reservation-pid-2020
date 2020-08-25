@@ -50,6 +50,10 @@ Route::get('/', function () {
         Route::get('show/{id}', ['as'=>'show', 'uses'=>'ShowController@show']);
        
 
+        // adding show
+        Route::get('add-show', ['as'=>'shows-add', 'uses'=>'ShowController@create']);
+        Route::patch('add-show-store', ['as'=>'shows adding', 'uses'=>'ShowController@store']);
+
 
         // display representations
         Route::get('representation', 'RepresentationController@index');

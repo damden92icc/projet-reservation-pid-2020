@@ -16,13 +16,10 @@ class ShowController extends Controller
     public function index()
     {
         $shows = Show::paginate(5);
-        
         return view ('show.index', [
                     'shows'=> $shows,
                     'resource'=> 'spectacle',
-                    ]);
-            
-                  
+                    ]);                 
     }
 
     /**
@@ -32,7 +29,8 @@ class ShowController extends Controller
      */
     public function create()
     {
-        //
+        return view ('show.create', [
+            ]);  
     }
 
     /**
@@ -54,14 +52,10 @@ class ShowController extends Controller
      */
     public function show($id)
     {
-        //
         $show = Show::find($id);
-
         // Retrieve all artist from show and group by type
         $collaborateurs = [];
 
-
-       
         foreach( $show->artistType as $at){
             $collaborateurs[$at->type->type][] = $at->artist;
         
