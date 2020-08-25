@@ -6,6 +6,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 use App\Location;
+use App\Locality;
 
 class LocationController extends Controller
 {
@@ -42,7 +43,7 @@ class LocationController extends Controller
     public function store(Request $request)
     {
         
-         // 'slug', 'designation', 'address', 'locality_id', 'website', 'phone',
+      
          $messages = [
             'required' => 'Ce champs ne peut etre vide',
         ];
@@ -63,12 +64,11 @@ class LocationController extends Controller
         $newLocation->slug = $request->input('slug');
         $newLocation->designation = $request->input('designation');
         $newLocation->address = $request->input('address');
-       // $newLocation->locality()->associate(Locality::find($requet->input('locality_id')));
-       $newLocation->locality_id = $request->input('locality_id');
+        $newLocation->locality()->associate(Locality::find($request->input('locality_id')));
+        $newLocation->locality_id = $request->input('locality_id');
         $newLocation->website= $request->input('website') ?? 'none';
         $newLocation->phone = $request->input('phone') ?? 'none';
         
-
         $newLocation->save();
 
         return view('location.show',[
