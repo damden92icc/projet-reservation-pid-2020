@@ -26,74 +26,99 @@ Route::get('/', function () {
 
         Route::get('/home', 'HomeController@index')->name('home');
 
-
         // display artist 
-        Route::get('artist', ['as'=>'artists', 'uses'=>'ArtistController@index']);
-        Route::get('artist/{id}', ['as'=>'artist details', 'uses'=>'ArtistController@show'])->where(['id'=> '[0-9]+']);
-        Route::get('artist/add', ['as'=>'artist add', 'uses'=>'ArtistController@create']);
-        Route::post('artist/store', ['as'=>'artist store', 'uses'=>'ArtistController@store']);
 
-        // Display Artist Type
-        Route::get('type', 'TypeController@index');
-        Route::get('type/{id}', 'TypeController@show');
+        Route::group(['prefix'=>'artist'], function(){
+            Route::get('/', ['as'=>'artists', 'uses'=>'ArtistController@index']);
+            Route::get('/{id}', ['as'=>'artist details', 'uses'=>'ArtistController@show'])->where(['id'=> '[0-9]+']);
+        });
 
-      
+        
+       // Display Artist Type
+          Route::group(['prefix'=>'type'], function(){
+                Route::get('/', 'TypeController@index');
+                Route::get('/{id}', 'TypeController@show')->where(['id'=> '[0-9]+']);
+        });
 
         // display Locality
-        Route::get('locality', 'LocalityController@index');
-        Route::get('locality/{id}', 'LocalityController@show')->where(['id'=> '[0-9]+']);
-        Route::get('locality/add', ['as'=>'locality add', 'uses'=>'LocalityController@create']);
-        Route::post('locality/store', ['as'=>'locality store', 'uses'=>'LocalityController@store']);
-        Route::get('locality/select-json', ['as'=>'locality select json', 'uses'=>'LocalityController@selectJson']);
-
+        Route::group(['prefix'=>'locality'], function(){
+            Route::get('/', ['as'=>'locality listing', 'uses'=>'LocalityController@index']);
+            Route::get('/{id}', 'LocalityController@show')->where(['id'=> '[0-9]+']);
+        });
 
         // display Location
-        Route::get('location', 'LocationController@index');
-        Route::get('location/{id}', 'LocationController@show')->where(['id'=> '[0-9]+']);
-        Route::get('location/add', ['as'=>'location add', 'uses'=>'LocationController@create']);
-        Route::post('location/store', ['as'=>'location store', 'uses'=>'LocationController@store']);
-
-
+        Route::group(['prefix'=>'location'], function(){
+            Route::get('/', ['as'=>'location listing', 'uses'=>'LocationController@index']);
+            Route::get('/{id}', 'LocationController@show')->where(['id'=> '[0-9]+']);
+        });
+        
         // display show
-        Route::get('shows', ['as'=>'shows', 'uses'=>'ShowController@index']);
-        Route::get('shows/get-json', ['as'=>'shows-json', 'uses'=>'ShowController@indexAjax']);
-        Route::get('show/{id}', ['as'=>'show', 'uses'=>'ShowController@show']);
+        Route::group(['prefix'=>'show'], function(){
+            Route::get('/', ['as'=>'shows', 'uses'=>'ShowController@index']);
+            Route::get('/get-json', ['as'=>'shows-json', 'uses'=>'ShowController@indexAjax']);
+            Route::get('/{id}', ['as'=>'show', 'uses'=>'ShowController@show'])->where(['id'=> '[0-9]+']);
+        });
        
-
-        // adding show
-        Route::get('add-show', ['as'=>'shows add', 'uses'=>'ShowController@create']);
-        Route::patch('add-show-store', ['as'=>'shows adding', 'uses'=>'ShowController@store']);
-
-
         // display representations
-        Route::get('representation', 'RepresentationController@index');
-        Route::get('representation/{id}', 'RepresentationController@show');
+        Route::group(['prefix'=>'representation'], function(){
+            Route::get('representation', 'RepresentationController@index');
+            Route::get('representation/{id}', 'RepresentationController@show')->where(['id'=> '[0-9]+']);
+        });
+        
+          // Display Optional page
+        Route::group(['prefix'=>'page'], function(){          
+            Route::get('a-propos', ['as'=>'about', 'uses'=>'PagesController@about']);
+            Route::get('contact', ['as'=>'contact', 'uses'=>'PagesController@contact']);
+        });
 
-        // Display Optional page
-        Route::get('a-propos', ['as'=>'about', 'uses'=>'PagesController@about']);
-        Route::get('contact', ['as'=>'contact', 'uses'=>'PagesController@contact']);
-
+    
         Auth::routes();
 
+        // Display Profil and update
+    
+          Route::group(['prefix'=>'profil'], function(){          
+            Route::get('/{user}',  ['as'=>'my profil', 'uses'=>'ProfilController@show']);
+            Route::get('/{user}/edit',  ['as'=>'profil edit', 'uses'=>'ProfilController@edit']);
+            Route::patch('/{user}',  ['as'=>'profil update', 'uses'=>'ProfilController@update']);
+        });
 
-/**
- * 
- *  Route for logged user
- * */
-
- // Display Profil and update
-
-Route::get('/profil/{user}',  ['as'=>'my profil', 'uses'=>'ProfilController@show']);
-Route::get('profil/{user}/edit',  ['as'=>'profil edit', 'uses'=>'ProfilController@edit']);
-Route::patch('profil/{user}',  ['as'=>'profil update', 'uses'=>'ProfilController@update']);
-
-/**
- * 
- *  Route for admin
- * */
-
-// display User role
-Route::get('role', 'RoleController@index');
-Route::get('role/{id}', 'RoleController@show');
+        Route::group(['prefix'=>'role'], function(){          
+            Route::get('/', 'RoleController@index');
+            Route::get('/{id}', 'RoleController@show');
+        });
 
 
+
+
+        /**
+         * ==============================
+         * Admin routes
+         * ==============================
+         */
+
+
+          // CRUD Artist
+          Route::group(['prefix'=>'/admin/artist'], function(){          
+            Route::get('/add', ['as'=>'artist add', 'uses'=>'ArtistController@create']);
+            Route::post('/store', ['as'=>'artist store', 'uses'=>'ArtistController@store']);
+        });
+         
+        
+        // CRUD locality
+            Route::group(['prefix'=>'/admin/locality'], function(){          
+            Route::get('/add', ['as'=>'locality add', 'uses'=>'LocalityController@create']);
+            Route::post('locality/store', ['as'=>'locality store', 'uses'=>'LocalityController@store']);
+            Route::get('locality/select-json', ['as'=>'locality select json', 'uses'=>'LocalityController@selectJson']);
+        });    
+
+            // CRUD Lcation
+        Route::group(['prefix'=>'/admin/location'], function(){          
+            Route::get('/add', ['as'=>'location add', 'uses'=>'LocationController@create']);
+            Route::post('/store', ['as'=>'location store', 'uses'=>'LocationController@store']);
+        });    
+
+            // adding show
+        Route::group(['prefix'=>'/admin/show'], function(){          
+            Route::get('/add', ['as'=>'shows add', 'uses'=>'ShowController@create']);
+            Route::patch('add-show-store', ['as'=>'shows adding', 'uses'=>'ShowController@store']);
+        });    

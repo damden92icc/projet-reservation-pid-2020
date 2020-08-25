@@ -52,7 +52,7 @@
                         <a class="nav-link" href="{{ route('shows add') }}"> ajouter un show </a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="{{ route('shows') }}"> Liste des theatre </a>
+                        <a class="nav-link" href="{{ route('location listing') }}"> Liste des theatre </a>
                         </li>
 
                         <li class="nav-item">
