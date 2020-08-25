@@ -46,6 +46,7 @@ Route::get('/', function () {
 
         // display show
         Route::get('shows', ['as'=>'shows', 'uses'=>'ShowController@index']);
+        Route::get('shows/get-json', ['as'=>'shows-json', 'uses'=>'ShowController@indexAjax']);
         Route::get('show/{id}', ['as'=>'show', 'uses'=>'ShowController@show']);
        
 

@@ -12,37 +12,59 @@
     <h2> Trié les spectacle </h2>
     <input >
 
+  
+
+<table id="show-listing" class="table" >
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Description</th>
+        <th>Bookable</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+  </table>
+
+
+
     
-<ul>
-@foreach($shows as $show)
-    <li>
-       {{$show->title}}
-
-       @if($show->bookable)
-        <span>{{$show->price}} </span>
-        @else 
-            <span> sold out </span>
-       @endif
 
 
-    @if($show->representation->count()==1)
+
+
+  <script>
+
+
+
+feedingData();
+
+function feedingData (){
+    var dataTable = $('#show-listing').DataTable({
+            "processing":true,
+            "serverSide":true,
+
+            ajax: {
+                url: "{{ route('shows-json') }}",
+            } ,
+            columns : [
+              
+            {"data": "title"},
+            {"data": "description"},
+            {"data": "price"},
+            {"data": "bookable"},
+              {
+                data: 'action', 
+                name: 'action', 
+                orderable: true, 
+                searchable: true
+            }
+            ]
+        });
+};
+       
+       
+
     
-    - <span> 1 representation </span>
-    @elseif($show->representation->count()>1)
-    - <span> {{$show->representation->count()}} Representation </span>
-    @else
-    - <em> aucune representation </em>
-    @endif
 
-   
-    @if($show->representation->count()>=1)
-    <a href="{{route('show', ['id' => $show->id]) }} "> Voir le détaul </a>
-    @endif
-
-    </li>
-@endforeach
-</ul>
-
-{{$shows->links()}}
-
+</script>
 @endsection

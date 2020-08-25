@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Show;
+use DataTables;
 
 class ShowController extends Controller
 {
@@ -20,6 +21,8 @@ class ShowController extends Controller
                     'shows'=> $shows,
                     'resource'=> 'spectacle',
                     ]);
+            
+                  
     }
 
     /**
@@ -105,5 +108,15 @@ class ShowController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    
+    public function indexAjax(){
+
+               $shows = Show::select ('title', 'description', 'price', 'bookable' );
+
+        return Datatables::of($shows)->make(true);
+            
+       
     }
 }

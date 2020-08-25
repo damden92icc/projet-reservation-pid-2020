@@ -175,6 +175,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /**
+         * 
+         * Datatable module provider
+         */
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        
     ],
 
     /*
@@ -227,6 +233,11 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+
+        /**
+         * Databasetable module
+         */
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class
     ],
 
 ];
