@@ -41,7 +41,7 @@ class ShowController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //      'slug', 'title', 'description', 'poster_url', 'location_id', 'bookable','price',
     }
 
     /**
@@ -107,7 +107,7 @@ class ShowController extends Controller
     
     public function indexAjax(){
 
-               $shows = Show::select ('title', 'description', 'price', 'bookable' );
+               $shows = Show::(selec)t ('title', 'description', 'price', 'bookable' );
 
         return Datatables::of($shows)->make(true);
             

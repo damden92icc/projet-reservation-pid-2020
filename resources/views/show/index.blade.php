@@ -50,12 +50,10 @@ function feedingData (){
                 url: "{{ route('shows-json') }}",
             } ,
             columns : [
-              
             {"data": "title"},
             {"data": "description"},
             {"data": "price"},
             {"data": "bookable"},
-            
             ]
         });
 };

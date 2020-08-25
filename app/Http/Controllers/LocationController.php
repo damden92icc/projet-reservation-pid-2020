@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
+
 use App\Location;
 
 class LocationController extends Controller
@@ -28,7 +30,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        //
+        return view ('location.create');
     }
 
     /**
@@ -39,7 +41,39 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+         // 'slug', 'designation', 'address', 'locality_id', 'website', 'phone',
+         $messages = [
+            'required' => 'Ce champs ne peut etre vide',
+        ];
+
+        $rules = [
+
+            'designation'=>'required',
+            'address'=>'required',
+            'locality_id'=>'required',
+            'slug'=> ['required', 'unique:locations', 'max:255'],
+        ];
+
+        Validator::make($request->all(), $rules, $messages)->validate();
+
+        $newLocation = new Location();
+
+
+        $newLocation->slug = $request->input('slug');
+        $newLocation->designation = $request->input('designation');
+        $newLocation->address = $request->input('address');
+       // $newLocation->locality()->associate(Locality::find($requet->input('locality_id')));
+       $newLocation->locality_id = $request->input('locality_id');
+        $newLocation->website= $request->input('website') ?? 'none';
+        $newLocation->phone = $request->input('phone') ?? 'none';
+        
+
+        $newLocation->save();
+
+        return view('location.show',[
+            'location' => $newLocation,
+        ]);
     }
 
     /**

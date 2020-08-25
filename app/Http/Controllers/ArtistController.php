@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\SUpport\Facades\Validator;
 use App\Artist;
-
 class ArtistController extends Controller
 {
     /**
@@ -28,7 +28,7 @@ class ArtistController extends Controller
      */
     public function create()
     {
-        //
+        return view ('artist.create', []);
     }
 
     /**
@@ -40,6 +40,26 @@ class ArtistController extends Controller
     public function store(Request $request)
     {
         //
+        $messages = [
+            'requiered' => 'Ce champs ne peut etre vide',
+        ];
+
+        $rules = [
+            'firstname'=>'required|max:200',
+            'lastname'=> 'required|max:200',
+        ];
+
+        Validator::make($request->all(), $rules, $messages)->validate();
+
+        $newArtist = new Artist;
+
+        $newArtist->firstname = $request->input('firstname');
+        $newArtist->lastname = $request->input('lastname');
+
+        $newArtist->save();
+
+
+        return redirect()->intended('/artist/'.$newArtist->id);
     }
 
     /**
@@ -90,4 +110,6 @@ class ArtistController extends Controller
     {
         //
     }
+
+
 }

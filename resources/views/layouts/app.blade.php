@@ -43,6 +43,21 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+
+
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ route('shows') }}"> Liste des shows </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ route('shows add') }}"> ajouter un show </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ route('shows') }}"> Liste des theatre </a>
+                        </li>
+
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ route('shows') }}"> A propos</a>
+                        </li>
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
