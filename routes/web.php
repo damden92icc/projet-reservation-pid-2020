@@ -101,6 +101,8 @@ Route::get('/', function () {
           Route::group(['prefix'=>'/admin/artist'], function(){          
             Route::get('/add', ['as'=>'artist add', 'uses'=>'ArtistController@create']);
             Route::post('/store', ['as'=>'artist store', 'uses'=>'ArtistController@store']);
+            Route::get('/select-json', ['as'=>'artist select json', 'uses'=>'ArtistController@selectJson']);
+          
         });
          
         
@@ -114,11 +116,12 @@ Route::get('/', function () {
             // CRUD Lcation
         Route::group(['prefix'=>'/admin/location'], function(){          
             Route::get('/add', ['as'=>'location add', 'uses'=>'LocationController@create']);
-            Route::post('/store', ['as'=>'location store', 'uses'=>'LocationController@store']);
+            Route::patch('/store', ['as'=>'location store', 'uses'=>'LocationController@store']);
+            Route::get('/selectJson', ['as'=>'location select json', 'uses'=>'LocationController@selectJson']);
         });    
 
             // adding show
         Route::group(['prefix'=>'/admin/show'], function(){          
             Route::get('/add', ['as'=>'shows add', 'uses'=>'ShowController@create']);
-            Route::patch('add-show-store', ['as'=>'shows adding', 'uses'=>'ShowController@store']);
+            Route::pOST('/store', ['as'=>'show store', 'uses'=>'ShowController@store']);
         });    
