@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use App\Show;
+use App\Location;
+use App\ArtistType;
+use App\Type;
 use DataTables;
 
 class ShowController extends Controller
@@ -41,8 +46,69 @@ class ShowController extends Controller
      */
     public function store(Request $request)
     {
-        //      'slug', 'title', 'description', 'poster_url', 'location_id', 'bookable','price',
+    
+        $messages = [
+            'required' => 'Ce champs ne peut etre vide',
+        ];
+
+        $rules = [
+            'title'=>'required',
+            'slug'=> ['required', 'unique:shows', 'max:255'],
+            'description'=>'required',       
+        ];
+
+        $validtaro = Validator::make($request->all(), $rules, $messages);
+
+        if($validtaro->fails()){
+            return response()->json($validtaro->errors(), 422);
+        }
+
+
+        $newShow = new Show();
+
+        $newShow->title = $request->input('title');
+        $newShow->slug = $request->input('slug');
+        $newShow->description = $request->input('description');
+        $newShow->poster_url = $request->input('poster_url');
+
+        $newShow->location()->associate(Location::find($request->input('location_id')));
+
+        $newShow->bookable = $request->input('bookable');
+        $newShow->price = $request->input('price');
+
+        $newShow->save();
+
+        foreach($request->input('authors') as $artistID){
+            $this->linkShowArtist($artistID , 'auteur', $newShow);
+        }
+
+        foreach($request->input('scenographes') as $artistID){
+            $this->linkShowArtist($artistID , 'scenographe', $newShow);
+        }
+
+
+        foreach($request->input('comediens') as $artistID){
+            $this->linkShowArtist($artistID, 'comedien', $newShow);
+        }
+
+
+       return response()->json($newShow, 201);
+        
     }
+
+
+    private function linkShowArtist($artistID, $type, $show){
+        $t = Type::where('type', $type)->first();
+        $artist_type = ArtistType::where('artist_id' , $artistID)->where('type_id', $t->id)->first();
+        if(!$artist_type){
+            $artist_type = new ArtistType();
+            $artist_type->artist_id = $artistID;
+            $artist_type->type_id = $t->id;
+            $artist_type->save();
+        }
+        $show->artistType()->attach($artist_type);
+    }
+
 
     /**
      * Display the specified resource.
@@ -104,10 +170,4 @@ class ShowController extends Controller
         //
     }
 
-    
-    public function indexAjax(){
-
-        $shows = Show::select('title', 'description', 'price', 'bookable' );
-        return Datatables::of($shows)->make(true);
-    }
 }

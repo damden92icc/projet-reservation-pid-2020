@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Location;
 use App\Locality;
+use DataTables;
 
 class LocationController extends Controller
 {
@@ -124,4 +125,20 @@ class LocationController extends Controller
     {
         //
     }
+
+    
+
+    
+    
+    public function datatableJson(){
+
+        $locations = Location::select('id', 'title', 'description', 'price', 'bookable' );
+        return Datatables::of($locations)->make(true);
+    }
+
+    public function selectJson(Request $request){
+        return Location::where('designation','like','%'.$request->input('search').'%')
+        ->orWhere('address', 'like', '%'. $request->input('search').'%')->get();
+    }
+
 }

@@ -111,5 +111,15 @@ class ArtistController extends Controller
         //
     }
 
+    public function datatableJson(){
+        $artists = Artists ::all();
+        return Datatables::of($artists)->make(true);
+    }
+
+
+    public function selectJson(Request $request){
+        return Artist::where('firstname','like','%'.$request->input('search').'%')
+        ->orWhere('lastname', 'like', '%'. $request->input('search').'%')->get();
+    }
 
 }
