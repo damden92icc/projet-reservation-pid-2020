@@ -51,16 +51,14 @@
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('shows') }}"> Liste des shows </a>
                         </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{ route('shows add') }}"> ajouter un show </a>
-                        </li>
+                      
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('location listing') }}"> Liste des theatre </a>
                         </li>
-
                         <li class="nav-item">
-                        <a class="nav-link" href="{{ route('shows') }}"> A propos</a>
+                        <a class="nav-link" href="{{ route('artist listing') }}"> Liste des artiste</a>
                         </li>
+                       
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -88,6 +86,12 @@
                                     </form>
                                 </div>
                             </li>
+                            <li class="nav-item">
+                        <a class="nav-link" href="{{ route('shows add') }}"> ajouter un show </a>
+                        </li>
+                            <li class="nav-item">
+                        <a class="nav-link" href="{{ route('location listing') }}"> ajouter un artiste</a>
+                        </li>
                         @endguest
                     </ul>
                 </div>
