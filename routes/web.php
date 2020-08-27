@@ -21,7 +21,6 @@ use Illuminate\Support\Facades\Route;
  * */
 
 
-
     Route::group(['prefix'=>'/'], function(){
         Route::get('/', ['as'=>'home welcome', 'uses'=>'ShowController@index']);
         Route::get('/home', ['as'=>'home', 'uses'=>'ShowController@index']);
@@ -29,13 +28,9 @@ use Illuminate\Support\Facades\Route;
         Route::get('/artist', ['as'=>'artist listing', 'uses'=>'ArtistController@index']);
     });
 
-
-     
-
         // display artist 
 
-        Route::group(['prefix'=>'artist'], function(){
-          
+        Route::group(['prefix'=>'artist'], function(){          
             Route::get('/{id}', ['as'=>'artist details', 'uses'=>'ArtistController@show'])->where(['id'=> '[0-9]+']);
         });
 
@@ -54,7 +49,6 @@ use Illuminate\Support\Facades\Route;
 
         // display Location
         Route::group(['prefix'=>'location'], function(){
-           
             Route::get('/{id}', 'LocationController@show')->where(['id'=> '[0-9]+']);
         });
         
@@ -73,12 +67,7 @@ use Illuminate\Support\Facades\Route;
             Route::get('representation/{id}', 'RepresentationController@show')->where(['id'=> '[0-9]+']);
         });
         
-          // Display Optional page
-        Route::group(['prefix'=>'page'], function(){          
-            Route::get('a-propos', ['as'=>'about', 'uses'=>'PagesController@about']);
-            Route::get('contact', ['as'=>'contact', 'uses'=>'PagesController@contact']);
-        });
-
+  
     
         Auth::routes();
 
@@ -109,8 +98,6 @@ use Illuminate\Support\Facades\Route;
           Route::group(['prefix'=>'/admin/artist'], function(){          
             Route::get('/add', ['as'=>'artist add', 'uses'=>'ArtistController@create']);
             Route::post('/store', ['as'=>'artist store', 'uses'=>'ArtistController@store']);
-    
-          
         });
          
         
@@ -137,8 +124,20 @@ use Illuminate\Support\Facades\Route;
 
         Route::get('/api-th', ['as'=>'API th listing show', 'uses'=>'APIController@index']);
 
+
+
+
+
+
         Route::group(['prefix'=>'/get-json'], function(){          
-            Route::get('/artist', ['as'=>'artist get json', 'uses'=>'ArtistController@datatableJson']);
-            Route::get('/location', ['as'=>'location get json', 'uses'=>'LocationController@datatableJson']);
+
+            Route::get('/artist-dt', ['as'=>'artist get json', 'uses'=>'ArtistController@datatableJson']);
+            Route::get('/artist', ['as'=>'artist select json', 'uses'=>'ArtistController@selectJson']);
+
+
+            Route::get('/location-dt', ['as'=>'location get json', 'uses'=>'LocationController@datatableJson']);
+            Route::get('/location', ['as'=>'location select json', 'uses'=>'LocationController@selectJson']);
+
+
             Route::get('/api-th', ['as'=>'API TH json', 'uses'=>'APIController@getData']);
         });    
