@@ -55,6 +55,7 @@
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('location listing') }}"> Liste des theatre </a>
                         </li>
+
                         <li class="nav-item">
                         <a class="nav-link" href="{{ route('artist listing') }}"> Liste des artiste</a>
                         </li>
@@ -86,20 +87,32 @@
                                     </form>
                                 </div>
                             </li>
-                            <li class="nav-item">
+                            
+                            
+                   <li class="nav-item">
                         <a class="nav-link" href="{{ route('shows add') }}"> ajouter un show </a>
                         </li>
+
+
                             <li class="nav-item">
-                        <a class="nav-link" href="{{ route('location listing') }}"> ajouter un artiste</a>
+                        <a class="nav-link" href="{{ route('artist add') }}"> ajouter un artiste</a>
                         </li>
+
+
+
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="container">
+            <div class="row">
+            <div class="col-sm-12">
             @yield('content')
+            </div>
+            </div>
+           
         </main>
     </div>
 </body>

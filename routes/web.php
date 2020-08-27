@@ -125,7 +125,7 @@ use Illuminate\Support\Facades\Route;
         Route::group(['prefix'=>'/admin/location'], function(){          
             Route::get('/add', ['as'=>'location add', 'uses'=>'LocationController@create']);
             Route::patch('/store', ['as'=>'location store', 'uses'=>'LocationController@store']);
-            Route::get('/selectJson', ['as'=>'location get json', 'uses'=>'LocationController@datatableJson']);
+         
         });    
 
             // adding show
@@ -138,4 +138,5 @@ use Illuminate\Support\Facades\Route;
 
         Route::group(['prefix'=>'/get-json'], function(){          
             Route::get('/artist', ['as'=>'artist get json', 'uses'=>'ArtistController@datatableJson']);
+            Route::get('/location', ['as'=>'location get json', 'uses'=>'LocationController@datatableJson']);
         });    
