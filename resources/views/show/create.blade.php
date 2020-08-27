@@ -166,7 +166,7 @@ $('#location_id').select2({
       
       maximumInputLength: 3,
       ajax: {
-          url:"{{route('location select json') }}",
+          url:"{{route('location get json') }}",
           datatype:'json',
           data: function(param){
               var query = {
@@ -191,7 +191,7 @@ $('#location_id').select2({
   $('#authors').select2({
     minimumInputLength: 2,
     ajax: {
-        url:"{{route('artist select json') }}",
+        url:"{{route('artist get json') }}",
         datatype:'json',
         data: function(param){
             var query = {
@@ -222,7 +222,7 @@ $('#location_id').select2({
 $('#scenographes').select2({
     minimumInputLength: 2,
     ajax: {
-        url:"{{route('artist select json') }}",
+        url:"{{route('artist get json') }}",
         datatype:'json',
         data: function(param){
             var query = {
@@ -253,7 +253,7 @@ $('#scenographes').select2({
 $('#comediens').select2({
     minimumInputLength: 2,
     ajax: {
-        url:"{{route('artist select json') }}",
+        url:"{{route('artist get json') }}",
         datatype:'json',
         data: function(param){
             var query = {

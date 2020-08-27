@@ -17,19 +17,25 @@ use Illuminate\Support\Facades\Route;
 
 /**
  * 
- *  Route for non logged user
+ *  Route for guest
  * */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-        Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::group(['prefix'=>'/'], function(){
+        Route::get('/', ['as'=>'home welcome', 'uses'=>'ShowController@index']);
+        Route::get('/home', ['as'=>'home', 'uses'=>'ShowController@index']);
+        Route::get('/location', ['as'=>'location listing', 'uses'=>'LocationController@index']);
+        Route::get('/artist', ['as'=>'artist listing', 'uses'=>'ArtistController@index']);
+    });
+
+
+     
 
         // display artist 
 
         Route::group(['prefix'=>'artist'], function(){
-            Route::get('/', ['as'=>'artists', 'uses'=>'ArtistController@index']);
+          
             Route::get('/{id}', ['as'=>'artist details', 'uses'=>'ArtistController@show'])->where(['id'=> '[0-9]+']);
         });
 
@@ -48,7 +54,7 @@ Route::get('/', function () {
 
         // display Location
         Route::group(['prefix'=>'location'], function(){
-            Route::get('/', ['as'=>'location listing', 'uses'=>'LocationController@index']);
+           
             Route::get('/{id}', 'LocationController@show')->where(['id'=> '[0-9]+']);
         });
         
@@ -103,7 +109,7 @@ Route::get('/', function () {
           Route::group(['prefix'=>'/admin/artist'], function(){          
             Route::get('/add', ['as'=>'artist add', 'uses'=>'ArtistController@create']);
             Route::post('/store', ['as'=>'artist store', 'uses'=>'ArtistController@store']);
-            Route::get('/select-json', ['as'=>'artist select json', 'uses'=>'ArtistController@selectJson']);
+    
           
         });
          
@@ -119,11 +125,18 @@ Route::get('/', function () {
         Route::group(['prefix'=>'/admin/location'], function(){          
             Route::get('/add', ['as'=>'location add', 'uses'=>'LocationController@create']);
             Route::patch('/store', ['as'=>'location store', 'uses'=>'LocationController@store']);
-            Route::get('/selectJson', ['as'=>'location select json', 'uses'=>'LocationController@selectJson']);
+         
         });    
 
             // adding show
         Route::group(['prefix'=>'/admin/show'], function(){          
             Route::get('/add', ['as'=>'shows add', 'uses'=>'ShowController@create']);
             Route::pOST('/store', ['as'=>'show store', 'uses'=>'ShowController@store']);
+        });    
+
+
+
+        Route::group(['prefix'=>'/get-json'], function(){          
+            Route::get('/artist', ['as'=>'artist get json', 'uses'=>'ArtistController@datatableJson']);
+            Route::get('/location', ['as'=>'location get json', 'uses'=>'LocationController@datatableJson']);
         });    
