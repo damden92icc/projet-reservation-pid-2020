@@ -112,6 +112,7 @@ class ArtistController extends Controller
     {
         //
     }
+    
 
     public function datatableJson(){
         $artists = Artist::select('firstname', 'lastname' );
