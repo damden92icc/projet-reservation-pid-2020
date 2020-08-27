@@ -139,4 +139,5 @@ use Illuminate\Support\Facades\Route;
         Route::group(['prefix'=>'/get-json'], function(){          
             Route::get('/artist', ['as'=>'artist get json', 'uses'=>'ArtistController@datatableJson']);
             Route::get('/location', ['as'=>'location get json', 'uses'=>'LocationController@datatableJson']);
+            Route::get('/api-th', ['as'=>'API th get json', 'uses'=>'APIController@getData']);
         });    
