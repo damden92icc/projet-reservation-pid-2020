@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\SUpport\Facades\Validator;
 use App\Artist;
+use DataTables;
+
 class ArtistController extends Controller
 {
     /**
@@ -112,7 +114,7 @@ class ArtistController extends Controller
     }
 
     public function datatableJson(){
-        $artists = Artists ::all();
+        $artists = Artist::select('firstname', 'lastname' );
         return Datatables::of($artists)->make(true);
     }
 
