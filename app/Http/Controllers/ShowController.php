@@ -77,23 +77,27 @@ class ShowController extends Controller
         $newShow->price = $request->input('price');
 
         $newShow->save();
-
-        foreach($request->input('authors') as $artistID){
-            $this->linkShowArtist($artistID , 'auteur', $newShow);
-        }
-
-        foreach($request->input('scenographes') as $artistID){
-            $this->linkShowArtist($artistID , 'scenographe', $newShow);
-        }
-
-
-        foreach($request->input('comediens') as $artistID){
-            $this->linkShowArtist($artistID, 'comedien', $newShow);
-        }
-
-
-       return response()->json($newShow, 201);
         
+
+        if( ($request->input('authors')) != null) {
+            foreach($request->input('authors') as $artistID){
+                $this->linkShowArtist($artistID , 'auteur', $newShow);
+            }
+        }
+        
+        if(($request->input('scenographe')) != null) {
+            foreach($request->input('scenographes') as $artistID){
+                $this->linkShowArtist($artistID , 'scenographe', $newShow);
+            }
+        }
+        
+        if(($request->input('comediens')) != null) {
+            foreach($request->input('comediens') as $artistID){
+            $this->linkShowArtist($artistID, 'comedien', $newShow);
+            }
+        }
+      
+       return response()->json($newShow, 201);  
     }
 
 
@@ -122,9 +126,12 @@ class ShowController extends Controller
         // Retrieve all artist from show and group by type
         $collaborateurs = [];
 
+        if(!isset($show->artistType)){
+
+        }
+
         foreach( $show->artistType as $at){
             $collaborateurs[$at->type->type][] = $at->artist;
-        
         }
         
        // dd($collaborateurs);
