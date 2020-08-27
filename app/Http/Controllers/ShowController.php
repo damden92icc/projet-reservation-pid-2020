@@ -126,9 +126,12 @@ class ShowController extends Controller
         // Retrieve all artist from show and group by type
         $collaborateurs = [];
 
+        if(!isset($show->artistType)){
+
+        }
+
         foreach( $show->artistType as $at){
             $collaborateurs[$at->type->type][] = $at->artist;
-        
         }
         
        // dd($collaborateurs);

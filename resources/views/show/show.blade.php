@@ -42,6 +42,8 @@
     <p> Auteurs </p>
 
 
+
+
     @foreach($collaborateurs['auteur'] as $auteur)
         {{$auteur->firstname}}
         {{$auteur->lastname}}
@@ -52,7 +54,10 @@
         @endif
     @endforeach
 
+ 
+
     <p> Metteur en scene </p>
+
 
 
     @foreach($collaborateurs['scenographe'] as $sceno)
@@ -67,7 +72,7 @@
 
     <p>Distribution: </p>
 
-
+    @if($collaborateurs['auteur'] != null)
     @foreach($collaborateurs['comedien'] as $comm)
         {{$comm->firstname}}
         {{$comm->lastname}}
@@ -77,5 +82,5 @@
         @elseif(!$loop->last),
         @endif
     @endforeach
-
+@endif
 @endsection
