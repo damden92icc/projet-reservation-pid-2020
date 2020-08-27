@@ -19,7 +19,6 @@
         <th>Description</th>
         <th>Bookable</th>
         <th>Price</th>
-        <th></th>
     
       </tr>
     </thead>
@@ -47,13 +46,13 @@ function feedingData (){
             "serverSide":true,
 
             ajax: {
-                url: "{{ route('shows-json') }}",
+                url: "{{ route('show get json') }}",
             } ,
             columns : [
             {"data": "title"},
             {"data": "description"},
             {"data": "price"},
-            {"data": "bookable"},
+            {"data": "bookable"}
             ]
         });
 };
