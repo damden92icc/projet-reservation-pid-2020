@@ -46,7 +46,7 @@ function feedingData (){
             "serverSide":true,
 
             ajax: {
-                url: "{{ route('shows-json') }}",
+                url: "{{ route('show get json') }}",
             } ,
             columns : [
             {"data": "title"},
