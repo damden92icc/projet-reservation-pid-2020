@@ -55,7 +55,7 @@ Route::get('/', function () {
         // display show
         Route::group(['prefix'=>'show'], function(){
             Route::get('/', ['as'=>'shows', 'uses'=>'ShowController@index']);
-            Route::get('/get-json', ['as'=>'shows-json', 'uses'=>'ShowController@indexAjax']);
+            Route::get('/get-json', ['as'=>'shows-json', 'uses'=>'ShowController@datatableJson']);
             Route::get('/{id}', ['as'=>'show', 'uses'=>'ShowController@show'])->where(['id'=> '[0-9]+']);
         });
        

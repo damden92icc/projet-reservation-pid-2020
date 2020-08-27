@@ -19,7 +19,6 @@
         <th>Description</th>
         <th>Bookable</th>
         <th>Price</th>
-        <th></th>
     
       </tr>
     </thead>
@@ -53,7 +52,7 @@ function feedingData (){
             {"data": "title"},
             {"data": "description"},
             {"data": "price"},
-            {"data": "bookable"},
+            {"data": "bookable"}
             ]
         });
 };
