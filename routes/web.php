@@ -123,6 +123,8 @@ use Illuminate\Support\Facades\Route;
 
 
         Route::get('/api-th', ['as'=>'API th listing show', 'uses'=>'APIController@index']);
+        Route::get('/api-th-single/{showSlug}', ['as'=>'API th single show', 'uses'=>'APIController@displaySingle']);
+
 
 
 
@@ -130,16 +132,15 @@ use Illuminate\Support\Facades\Route;
 
 
         Route::group(['prefix'=>'/get-json'], function(){          
-
             Route::get('/artist-dt', ['as'=>'artist get json', 'uses'=>'ArtistController@datatableJson']);
             Route::get('/artist', ['as'=>'artist select json', 'uses'=>'ArtistController@selectJson']);
-
 
             Route::get('/location-dt', ['as'=>'location get json', 'uses'=>'LocationController@datatableJson']);
             Route::get('/location', ['as'=>'location select json', 'uses'=>'LocationController@selectJson']);
 
 
             Route::get('/api-th', ['as'=>'API TH json', 'uses'=>'APIController@getData']);
+            Route::get('/api-th-show/{showSlug}', ['as'=>'API th single show js', 'uses'=>'APIController@getSingleShow']);
         });    
 
 
