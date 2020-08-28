@@ -93,7 +93,6 @@ use Illuminate\Support\Facades\Route;
          * ==============================
          */
 
-
           // CRUD Artist
           Route::group(['prefix'=>'/admin/artist'], function(){          
             Route::get('/add', ['as'=>'artist add', 'uses'=>'ArtistController@create']);
@@ -129,7 +128,8 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
+        Route::pOST('/representation-store', ['as'=>'representation store', 'uses'=>'RepresentationController@store']);
+          
 
 
 

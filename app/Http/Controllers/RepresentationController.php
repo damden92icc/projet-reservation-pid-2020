@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Representation;
 use Carbon\Carbon;
+use Illuminate\SUpport\Facades\Validator;
 
 class RepresentationController extends Controller
 {
@@ -41,7 +42,28 @@ class RepresentationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'requiered' => 'Ce champs ne peut etre vide',
+        ];
+
+        $rules = [
+            'location_id'=>'required',
+            'show_id'=> 'required',
+            'when'=> 'required',
+        ];
+
+        Validator::make($request->all(), $rules, $messages)->validate();
+
+        $representation = new Representation();
+
+        $representation->location_id = $request->input('location_id');
+        $representation->show_id = $request->input('show_id');
+        $representation->when = $request->input('when');
+
+   
+
+        $representation->save();
+        return response()->json($representation, 201);
     }
 
     /**
@@ -97,3 +119,4 @@ class RepresentationController extends Controller
         //
     }
 }
+
