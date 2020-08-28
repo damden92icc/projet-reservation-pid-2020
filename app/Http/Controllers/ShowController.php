@@ -48,13 +48,15 @@ class ShowController extends Controller
     {
     
         $messages = [
-            'required' => 'Ce champs ne peut etre vide',
+            'required' => 'requis',
+            'unique'=> 'unique',
         ];
 
         $rules = [
             'title'=>'required',
             'slug'=> ['required', 'unique:shows', 'max:255'],
             'description'=>'required',       
+            'location_id'=>'required',       
         ];
 
         $validtaro = Validator::make($request->all(), $rules, $messages);

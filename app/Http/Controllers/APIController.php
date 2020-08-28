@@ -76,10 +76,11 @@ class APIController extends Controller
     }
 
 
-    public function getSingleShow($showSlug){
+  
 
-
-
+    public function displaySingle($showSlug){
+        
+       
         $apiRequest = '/api/spectacles/'.$showSlug; // Requête (OBJET = identifiant unique) 
     
         $start = '0'; // Debut de l'offset 
@@ -102,20 +103,13 @@ class APIController extends Controller
         $result =  json_decode(curl_exec($apiCall));
 
         // faire un print des résultats
-        //echo '<pre>'.print_r($result,true).'</pre>';
-
-        
-        foreach($result as $uniqueShow){
-            print_r($uniqueShow);
-        }
-
-    }
+      //  echo '<pre>'.print_r($result,true).'</pre>';
 
 
-    public function displaySingle($showSlug){
-        
+
         return view ('API.single', [
-            'fetchedShow'=>  $showSlug,
+            'data'=>  $result[0],
+            'actors' => $result[0]->actors,
             'resource'=> 'SIngle show from API TH',
             ]);
     

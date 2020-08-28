@@ -98,6 +98,7 @@ use Illuminate\Support\Facades\Route;
           Route::group(['prefix'=>'/admin/artist'], function(){          
             Route::get('/add', ['as'=>'artist add', 'uses'=>'ArtistController@create']);
             Route::post('/store', ['as'=>'artist store', 'uses'=>'ArtistController@store']);
+            Route::post('/store-many', ['as'=>'artist store many', 'uses'=>'ArtistController@storeMany']);
         });
          
         
@@ -119,6 +120,7 @@ use Illuminate\Support\Facades\Route;
         Route::group(['prefix'=>'/admin/show'], function(){          
             Route::get('/add', ['as'=>'shows add', 'uses'=>'ShowController@create']);
             Route::pOST('/store', ['as'=>'show store', 'uses'=>'ShowController@store']);
+          
         });    
 
 

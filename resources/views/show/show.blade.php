@@ -55,9 +55,8 @@
     @endforeach
 
  
-
+@if(isset($collaborateurs['scenographe']))
     <p> Metteur en scene </p>
-
 
 
     @foreach($collaborateurs['scenographe'] as $sceno)
@@ -69,10 +68,10 @@
         @elseif(!$loop->last),
         @endif
     @endforeach
+@endif
 
     <p>Distribution: </p>
 
-    @if($collaborateurs['auteur'] != null)
     @foreach($collaborateurs['comedien'] as $comm)
         {{$comm->firstname}}
         {{$comm->lastname}}
@@ -82,5 +81,5 @@
         @elseif(!$loop->last),
         @endif
     @endforeach
-@endif
+
 @endsection
