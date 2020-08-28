@@ -141,3 +141,7 @@ use Illuminate\Support\Facades\Route;
 
             Route::get('/api-th', ['as'=>'API TH json', 'uses'=>'APIController@getData']);
         });    
+
+
+        // RSS
+        Route::feeds();
