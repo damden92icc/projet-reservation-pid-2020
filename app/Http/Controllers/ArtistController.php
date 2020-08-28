@@ -60,8 +60,32 @@ class ArtistController extends Controller
 
         $newArtist->save();
 
-
         return redirect()->intended('/artist/'.$newArtist->id);
+    }
+
+    public function storeMany(request $request){
+
+        $tabArtist = [] ;
+
+        foreach($request->input('artists') as $artistFromAPI){
+       
+        $artist = Artist::where('firstname', $artistFromAPI['firstname'])->where('lastname', $artistFromAPI['lastname'])->first();
+
+        if(!$artist){
+           
+            $artist = new Artist();
+
+            $artist->firstname = $artistFromAPI['firstname'];
+            $artist->lastname = $artistFromAPI['lastname'];
+    
+            $artist->save();
+        }
+        
+             array_push($tabArtist, $artist->id);
+
+        }
+
+        return $tabArtist;
     }
 
     /**

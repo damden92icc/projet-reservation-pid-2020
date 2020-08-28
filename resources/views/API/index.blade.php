@@ -10,11 +10,13 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Title</th>
-      <th scope="col">Liens</th>
-        <th> Auteurs</th>
-        <th> Directors</th>
-        <th> Image </th>
+      <th>Title</th>
+      <th>Liens originel</th>
+      <th> Auteurs</th>
+      <th> Directors</th>
+      <th> Image </th>
+      <th> detail </th>
+      <th> Add </th>
     </tr>
   </thead>
   <tbody>
@@ -44,6 +46,15 @@
     <td>
         <img src="   {{$SingleSHow->poster}}">
     </td>
+
+
+    <td>
+
+    <a href="{{route('API th single show', ['showSlug' => $SingleSHow->object ])}}">view</a>
+  </td>
+  <td>
+   <a href="">Add</a>
+  </td>
 
     </tr>
 @endforeach

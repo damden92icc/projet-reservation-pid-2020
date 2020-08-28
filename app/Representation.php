@@ -24,7 +24,7 @@ class Representation extends Model
       * @var bool
       */
 
-      public $timestamps = true;
+      public $timestamps = false;
 
       /**
        * Get the current location of representation

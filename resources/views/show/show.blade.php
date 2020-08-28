@@ -55,9 +55,8 @@
     @endforeach
 
  
-
+@if(isset($collaborateurs['scenographe']))
     <p> Metteur en scene </p>
-
 
 
     @foreach($collaborateurs['scenographe'] as $sceno)
@@ -69,10 +68,10 @@
         @elseif(!$loop->last),
         @endif
     @endforeach
+@endif
 
     <p>Distribution: </p>
 
-    @if($collaborateurs['auteur'] != null)
     @foreach($collaborateurs['comedien'] as $comm)
         {{$comm->firstname}}
         {{$comm->lastname}}
@@ -82,5 +81,50 @@
         @elseif(!$loop->last),
         @endif
     @endforeach
-@endif
+
+
+
+
+
+
+
+
+
+    <form method="POST" action="{{ route('representation store') }}">
+
+{{csrf_field()}}
+    <div class="form-group {{ $errors->has('when') ? 'has-error' : '' }}">
+        <label for="when"> when </label>
+        <input type="text" id="when" name="when" class="form-control" value="{{old('when')}}">
+
+        @if($errors->has('when'))
+            <span class="text-danger"> <strong> {{$errors->first('when')}} </strong> </span>
+        @endif
+    </div>
+
+    <div class="form-group {{ $errors->has('location_id') ? 'has-error' : '' }}">
+        <label for="location_id"> location </label>
+        <input type="text" id="location_id" name="location_id" class="form-control" value="{{old('location_id')}}">
+
+        @if($errors->has('location_id'))
+            <span class="text-danger"> <strong> {{$errors->first('location_id')}} </strong> </span>
+        @endif
+    </div>
+
+
+
+    <input id="show_id" name="show_id" hidden value='{{$show->id}}'>
+
+    <div class="form-group">
+        <button class="btn btn-success" type="submit">
+            Enregistrer
+        </button>
+    </div>
+
+</form>
+
+
+
+
+
 @endsection

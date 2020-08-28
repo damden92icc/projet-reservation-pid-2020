@@ -18,27 +18,27 @@
         <label for="title"> title</label>
         <input type="text" id="title" name="title" class="form-control" value="{{old('title')}}">
 
-        @if($errors->has('title'))
-            <span class="text-danger"> <strong> {{$errors->first('title')}} </strong> </span>
-        @endif
+      
+            <span id="error-title" hidden class="text-danger"> <strong>Ce champs ne peut etre vide </strong> </span>
+      
     </div>
 
     <div class="form-group {{ $errors->has('slug') ? 'has-error' : '' }}">
         <label for="slug"> slug</label>
         <input type="text" id="slug" name="slug" class="form-control" value="{{old('slug')}}">
 
-        @if($errors->has('slug'))
-            <span class="text-danger"> <strong> {{$errors->first('slug')}} </strong> </span>
-        @endif
+      
+            <span class="text-danger" hidden id="error-slug-empty"> <strong> Ce champs ne peut etre vide</strong> </span>
+            <span class="text-danger" hidden id="error-slug-unique"> <strong> Ce slug existee</strong> </span>
     </div>
 
     <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
         <label for="description">description</label>
         <input type="text" id="description" name="description" class="form-control" value="{{old('description')}}">
 
-        @if($errors->has('description'))
-            <span class="text-danger"> <strong> {{$errors->first('description')}} </strong> </span>
-        @endif
+      
+            <span class="text-danger" hidden id="error-des"> <strong> Ce champs ne peut etre vide</strong> </span>
+     
     </div>
 
 
@@ -46,9 +46,8 @@
         <label for="location_id">location_id</label>
         <select id="location_id" name="location_id" class="form-control browser-default" ></select>
 
-        @if($errors->has('location_id'))
-            <span class="text-danger"> <strong> {{$errors->first('location_id')}} </strong> </span>
-        @endif
+            <span class="text-danger" hidden id="error-loc"> <strong> Ce champs ne peut etre vide</strong> </span>
+    
     </div>
     
     <!-- AUthors -->
@@ -155,6 +154,58 @@ $(function() {
             },
             error: function(e){
                 console.error(e);
+                console.log(e.status);
+                console.log(e.responseText);
+                if(e.status == 422){
+                    var textError = JSON.parse(e.responseText);    
+                    console.log(textError);           
+                    if(textError.hasOwnProperty('title')){
+                        console.log('titre manquant');
+                        $('#error-title').removeAttr('hidden');
+                    }
+                    else {
+                        $('#error-title').attr('hidden', 'hidden')
+                    }
+
+                    if(textError.hasOwnProperty('slug')){
+                        if(textError['slug'][0]== 'requis'){
+                            console.log('slug manquant');
+                            $('#error-slug-empty').removeAttr('hidden');
+                        }
+                        else{
+                            $('#error-slug-empty').attr('hidden', 'hidden') 
+                        }
+                       if(textError['slug'][0] == 'unique'){
+                           console.log("dois etre unique");
+                           $('#error-slug-unique').removeAttr('hidden');
+                       }
+                       else{
+                        $('#error-slug-unique').attr('hidden', 'hidden') 
+                       }
+
+                    }
+                    else {
+                        $('#error-slug-empty').attr('hidden', 'hidden')
+                        $('#error-slug-unique').attr('hidden', 'hidden') 
+                    }
+
+                    if(textError.hasOwnProperty('description')){
+                        console.log('desc manquant');
+                        $('#error-des').removeAttr('hidden');
+                    }
+                    else {
+                        $('#error-des').attr('hidden', 'hidden')
+                    }
+
+                    if(textError.hasOwnProperty('location_id')){
+                        console.log('location manquant');
+                        $('#error-loc').removeAttr('hidden');
+                    }
+                    else {
+                        $('#error-loc').attr('hidden', 'hidden')
+                    }
+
+                }
             }
         });
   });

@@ -74,5 +74,45 @@ class APIController extends Controller
             }
             
     }
+
+
+  
+
+    public function displaySingle($showSlug){
+        
+       
+        $apiRequest = '/api/spectacles/'.$showSlug; // Requête (OBJET = identifiant unique) 
+    
+        $start = '0'; // Debut de l'offset 
+
+        $end = '2'; // Fin de l'offset 
+
+        $apiKey = 'f8149e4928f19101881a781b2736c1661305c0ca'; // Clé API 
+
+        $entryPoint = 'https://www.theatre-contemporain.net'; // Point d'entrée 
+         
+        // initialiser CURL et définir les options
+        $apiCall = curl_init($entryPoint.$apiRequest.'?k='.$apiKey);
+        $apiCallOptions = array(
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HTTPHEADER => array('Content-type: application/json'),
+        );
+        curl_setopt_array($apiCall, $apiCallOptions);
+        
+        // récupèrer les résultats
+        $result =  json_decode(curl_exec($apiCall));
+
+        // faire un print des résultats
+      //  echo '<pre>'.print_r($result,true).'</pre>';
+
+
+
+        return view ('API.single', [
+            'data'=>  $result[0],
+            'actors' => $result[0]->actors,
+            'resource'=> 'SIngle show from API TH',
+            ]);
+    
+    }
 }
 
