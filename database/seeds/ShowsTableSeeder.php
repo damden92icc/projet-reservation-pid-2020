@@ -30,6 +30,7 @@ class ShowsTableSeeder extends Seeder
                'location_slug'=>'espace-delvaux-la-venerie',
                'bookable'=> true,
                'price'=> 9.00,
+               'author'=>'createur du show',
            ],
            [
             'slug'=>null,
@@ -39,6 +40,7 @@ class ShowsTableSeeder extends Seeder
             'location_slug'=>null,
             'bookable'=> false,
             'price'=> 5.50,
+            'author'=>'createur du show',
             ],
             [
             'slug'=>null,
@@ -48,6 +50,7 @@ class ShowsTableSeeder extends Seeder
             'location_slug'=>'dexia-art-center',
             'bookable'=> true,
             'price'=> 10.50,
+            'author'=>'createur du show',
             ],
             [
             'slug'=>null,
@@ -57,6 +60,7 @@ class ShowsTableSeeder extends Seeder
             'location_slug'=>'dexia-art-center',
             'bookable'=> true,
             'price'=> 10.50,
+            'author'=>'createur du show',
             ],
             [
             'slug'=>null,
@@ -66,6 +70,7 @@ class ShowsTableSeeder extends Seeder
             'location_slug'=>'dexia-art-center',
             'bookable'=> true,
             'price'=> 10.50,
+            'author'=>'createur du show',
             ],    
             [
             'slug'=>null,
@@ -75,6 +80,7 @@ class ShowsTableSeeder extends Seeder
             'location_slug'=>'dexia-art-center',
             'bookable'=> true,
             'price'=> 10.50,
+            'author'=>'createur du show',
             ], 
             [
             'slug'=>'le-mariage-de-figaro',
@@ -84,6 +90,7 @@ class ShowsTableSeeder extends Seeder
             'location_slug'=>'dexia-art-center',
             'bookable'=> true,
             'price'=> 10.50,
+            'author'=>'createur du show',
             ],
             [
             'slug'=>null,
@@ -93,6 +100,7 @@ class ShowsTableSeeder extends Seeder
             'location_slug'=>'dexia-art-center',
             'bookable'=> true,
             'price'=> 10.50,
+            'author'=>'createur du show',
             ],    
             [
             'slug'=>null,
@@ -102,6 +110,7 @@ class ShowsTableSeeder extends Seeder
             'location_slug'=>'dexia-art-center',
             'bookable'=> true,
             'price'=> 10.50,
+            'author'=>'createur du show',
             ],    
             [
              'slug'=>null,
@@ -111,6 +120,7 @@ class ShowsTableSeeder extends Seeder
             'location_slug'=>'dexia-art-center',
             'bookable'=> true,
             'price'=> 10.50,
+            'author'=>'createur du show',
             ],    
             [
             'slug'=>'',
@@ -120,6 +130,7 @@ class ShowsTableSeeder extends Seeder
             'location_slug'=>'dexia-art-center',
             'bookable'=> true,
             'price'=> 10.50,
+            'author'=>'createur du show',
             ],    
             [
             'slug'=>'',
@@ -129,7 +140,9 @@ class ShowsTableSeeder extends Seeder
             'location_slug'=>'dexia-art-center',
             'bookable'=> true,
             'price'=> 10.50,
+            'author'=>'createur du show',
             ], 
+            
             [
             'slug'=>null,
             'title'=> 'Le Cid',
@@ -138,6 +151,7 @@ class ShowsTableSeeder extends Seeder
             'location_slug'=>'dexia-art-center',
             'bookable'=> true,
             'price'=> 10.50,
+            'author'=>'createur du show',
             ],    
             [
             'slug'=>'',
@@ -147,6 +161,7 @@ class ShowsTableSeeder extends Seeder
             'location_slug'=>'dexia-art-center',
             'bookable'=> true,
             'price'=> 10.50,
+            'author'=>'createur du show',
             ],    
             [
             'slug'=>'',
@@ -156,6 +171,7 @@ class ShowsTableSeeder extends Seeder
             'location_slug'=>'dexia-art-center',
             'bookable'=> true,
             'price'=> 10.50,
+            'author'=>'createur du show',
             ], 
             [
             'slug'=>'',
@@ -165,6 +181,7 @@ class ShowsTableSeeder extends Seeder
             'location_slug'=>'dexia-art-center',
             'bookable'=> true,
             'price'=> 10.50,
+            'author'=>'createur du show',
             ],       
             [
             'slug'=>'',
@@ -174,6 +191,7 @@ class ShowsTableSeeder extends Seeder
             'location_slug'=>'dexia-art-center',
             'bookable'=> true,
             'price'=> 10.50,
+            'author'=>'createur du show',
             ],  
             [
             'slug'=>'',
@@ -183,6 +201,7 @@ class ShowsTableSeeder extends Seeder
             'location_slug'=>'dexia-art-center',
             'bookable'=> true,
             'price'=> 10.50,
+            'author'=>'createur du show',
             ],  
             ];
 
@@ -200,6 +219,7 @@ class ShowsTableSeeder extends Seeder
                 'location_id'=> $location->id ?? null,
                 'bookable'=> $data['bookable'],
                 'price'=> $data['price'],
+                'author'=> $data['author'],
         ]);
     }
     }

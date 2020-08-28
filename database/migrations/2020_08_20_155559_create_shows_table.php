@@ -29,7 +29,9 @@ class CreateShowsTable extends Migration
             $table->decimal('price',10,3)->nullable();
 
             $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('updated_at')->useCurrent();
+
+            $table->string('author', 255)->nullable();
         });
     }
 
