@@ -59,9 +59,7 @@ class RepresentationController extends Controller
         $representation->location_id = $request->input('location_id');
         $representation->show_id = $request->input('show_id');
         $representation->when = $request->input('when');
-
-   
-
+        
         $representation->save();
         return response()->json($representation, 201);
     }

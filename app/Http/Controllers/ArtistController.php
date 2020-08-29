@@ -74,15 +74,11 @@ class ArtistController extends Controller
         if(!$artist){
            
             $artist = new Artist();
-
             $artist->firstname = $artistFromAPI['firstname'];
             $artist->lastname = $artistFromAPI['lastname'];
-    
             $artist->save();
         }
-        
              array_push($tabArtist, $artist->id);
-
         }
 
         return $tabArtist;

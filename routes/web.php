@@ -116,7 +116,7 @@ use Illuminate\Support\Facades\Route;
         });    
 
             // adding show
-        Route::group(['prefix'=>'/admin/show'], function(){          
+        Route::group(['prefix'=>'/admin/show', 'middleware'=>'isAdmin'], function(){          
             Route::get('/add', ['as'=>'shows add', 'uses'=>'ShowController@create']);
             Route::pOST('/store', ['as'=>'show store', 'uses'=>'ShowController@store']);
           
