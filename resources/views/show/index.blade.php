@@ -26,6 +26,24 @@
 
 
 
+<a href="{{ route('Export show xls') }}"> export </a>
+
+
+
+
+
+
+
+<form action="{{ route('Import show xls') }}" method="POST" enctype="multipart/form-data">
+
+@csrf
+        <input type="file" name="file" class="form-control">
+        <button type="submit" class="btn btn-success">Upload</button>
+</form>
+
+
+
+
 
 
 

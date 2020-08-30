@@ -180,6 +180,11 @@ return [
          * Datatable module provider
          */
         Yajra\DataTables\DataTablesServiceProvider::class,
+
+         /*
+     * Package Excel Service Providers...
+     */
+    Maatwebsite\Excel\ExcelServiceProvider::class,
         
     ],
 
@@ -237,7 +242,12 @@ return [
         /**
          * Databasetable module
          */
-        'DataTables' => Yajra\DataTables\Facades\DataTables::class
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        
+    /**
+         * Excel module
+         */
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];
