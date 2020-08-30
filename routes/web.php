@@ -148,6 +148,7 @@ use Illuminate\Support\Facades\Route;
 
 
         Route::get('/export-shows', ['as'=>'Export show xls', 'uses'=>'ShowExportController@export']);
+        Route::post('/import-shows', ['as'=>'Import show xls', 'uses'=>'ShowsImportController@import']);
 
 
         // RSS
