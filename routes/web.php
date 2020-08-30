@@ -146,5 +146,9 @@ use Illuminate\Support\Facades\Route;
         });    
 
 
+
+        Route::get('/export-shows', ['as'=>'Export show xls', 'uses'=>'ShowExportController@export']);
+
+
         // RSS
         Route::feeds();

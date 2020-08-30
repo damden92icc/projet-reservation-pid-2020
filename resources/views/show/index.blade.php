@@ -26,7 +26,7 @@
 
 
 
-
+<a href="{{ route('Export show xls') }}"> export </a>
 
 
 
