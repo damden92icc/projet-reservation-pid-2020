@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class APIController extends Controller
 {
@@ -113,6 +114,12 @@ class APIController extends Controller
             'resource'=> 'SIngle show from API TH',
             ]);
     
+    }
+
+
+    public function localShow(){
+        $query = DB::table('shows')->select('title', 'slug', 'description', 'price', 'bookable')->get();
+        return $query;
     }
 }
 
