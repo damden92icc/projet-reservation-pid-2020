@@ -16,9 +16,19 @@ use App\Show;
 |
 */
 
-Route::get('/show', function(){
-  
-    $query = DB::table('shows')->select('title', 'slug', 'description', 'price', 'bookable')->get();
+/**
+ * @group  Show Display
+ *
+ * APIs for display show from PID APP
+ * @bodyParam  body Need object Show to be used
+ * @response  {
+ *      "id": 4,
+ *      "name": "Le cid",
+ *      "slug": "le-cid",
+ *      "Description" : "Le Cid est une piece de theatre realiser par .... ",
+ *      "price" : "19,5",
+ *      "bookable" : "true",
+ *      }
+ */
 
-    return $query;
-});
+Route::get('/show', ['as'=>'API show', 'uses'=>'APIController@localSHow']);
