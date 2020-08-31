@@ -60,44 +60,44 @@ class ArtistTypeShowTableSeeder extends Seeder
                 'artist_firstname'=> 'Marius',
                 'artist_lastname'=>'Von May',
                 'type'=> 'auteur',
-                'show_slug'=> 'maneken',
+                'show_slug'=> 'le-cid',
             ],
             [
                 'artist_firstname'=> 'Marius',
                 'artist_lastname'=>'Von May',
                 'type'=> 'scenographe',
-                'show_slug'=> 'maneken',
+                'show_slug'=> 'le-cid',
             ],
             [
                 'artist_firstname'=> 'Marius',
                 'artist_lastname'=>'Von May',
                 'type'=> 'comedien',
-                'show_slug'=> 'maneken',
+                'show_slug'=> 'le-cid',
             ],
          
             [
                 'artist_firstname'=> 'Olivier',
                 'artist_lastname'=>'Boudon',
                 'type'=> 'comedien',
-                'show_slug'=> 'maneken',
+                'show_slug'=> 'le-cid',
             ],
             [
                 'artist_firstname'=> 'Olivier',
                 'artist_lastname'=>'Boudon',
                 'type'=> 'comedien',
-                'show_slug'=> 'ceci-nest-pas-un-chanteur-belge',
+                'show_slug'=> 'antigone',
             ],
             [
                 'artist_firstname'=> 'Olivier',
                 'artist_lastname'=>'Boudon',
                 'type'=> 'auteur',
-                'show_slug'=> 'ceci-nest-pas-un-chanteur-belge',
+                'show_slug'=> 'le-cid',
             ],
             [
                 'artist_firstname'=> 'Anne Marie',
                 'artist_lastname'=>'Manon',
                 'type'=> 'scenographe',
-                'show_slug'=> 'ceci-nest-pas-un-chanteur-belge',
+                'show_slug'=> 'le-cid',
             ],
        
         ];
