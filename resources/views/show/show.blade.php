@@ -39,11 +39,9 @@
 
      <h2> Liste des artistes </h2>
      
+   
+    @if(isset($collaborateurs['auteur']))
     <p> Auteurs </p>
-
-
-
-
     @foreach($collaborateurs['auteur'] as $auteur)
         {{$auteur->firstname}}
         {{$auteur->lastname}}
@@ -53,7 +51,7 @@
         @elseif(!$loop->last),
         @endif
     @endforeach
-
+    @endif
  
 @if(isset($collaborateurs['scenographe']))
     <p> Metteur en scene </p>
@@ -70,8 +68,9 @@
     @endforeach
 @endif
 
-    <p>Distribution: </p>
 
+    @if(isset($collaborateurs['comedien']))
+    <p>Distribution: </p>
     @foreach($collaborateurs['comedien'] as $comm)
         {{$comm->firstname}}
         {{$comm->lastname}}
@@ -81,6 +80,7 @@
         @elseif(!$loop->last),
         @endif
     @endforeach
+    @endif
 
 
 

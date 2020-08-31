@@ -99,8 +99,8 @@
                         <a class="nav-link" href="{{ route('artist add') }}"> Mes eservation</a>
                     </li>
                  
-
-                    <li class="nav-item">
+                 @admin 
+                 <li class="nav-item">
                         <a class="nav-link" href="{{ route('shows add') }}"> ajouter un show </a>
                     </li>
                     <li class="nav-item">
@@ -113,6 +113,9 @@
                         <a class="nav-link" href="{{ route('API th listing show') }}"> list show from API TH</a>
                     </li>
 
+                 @endadmin
+
+               
                         @endguest
                     </ul>
                 </div>

@@ -180,7 +180,7 @@ class ShowController extends Controller
     }
 
     public function datatableJson(){
-        $allShow = Show::select(  'title','description', 'price', 'bookable' );
+        $allShow = Show::select(  '*' );
         return Datatables::of($allShow)->make(true);
     }
 
