@@ -6,9 +6,7 @@
 
 <h1> Créer un artiste </h1>
 
-@if(isset($artist))
-@dump($artist)
-@endif
+
 
 
 

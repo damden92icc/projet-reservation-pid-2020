@@ -116,5 +116,34 @@ class RepresentationController extends Controller
     {
         //
     }
+
+
+    public function reservationPlace(Request $request){
+        $messages = [
+            'requiered' => 'Ce champs ne peut etre vide',
+        ];
+
+        $rules = [
+            'nbrePlace'=>'required|integer|min:1',
+        ];
+
+        Validator::make($request->all(), $rules, $messages)->validate();
+
+            $representation = Representation::find($request->input('represntation_id'));
+            
+            $representation->user()->save(\Auth::user() , ['places'=> $request->input('nbrePlace') ] );
+
+            return redirect()->intended('/profil/'.\Auth::user()->id);
+    }
+
+
+    public function bookingForm($id){
+
+        $representation = Representation::find($id);
+        
+        return view('representation.booking', [
+            'represensation'=> $representation,
+        ]);
+    }
 }
 

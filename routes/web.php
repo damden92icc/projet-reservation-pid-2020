@@ -82,6 +82,8 @@ use Illuminate\Support\Facades\Route;
             Route::patch('/{user}',  ['as'=>'profil update', 'uses'=>'ProfilController@update']);
         });
 
+        Route::GET('/booking/{id}',  ['as'=>'booking get place', 'uses'=>'RepresentationController@bookingForm'])->where(['id'=> '[0-9]+']);
+        Route::POST('/booking',  ['as'=>'booking place', 'uses'=>'RepresentationController@reservationPlace']); 
 
 /**
  * ==============================
