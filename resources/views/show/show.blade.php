@@ -15,14 +15,18 @@
             <p>Pas d'image'</p>
         @endif
 
+
+        <p> {{$show->description}} </p>
+
+
         @if($show->location)
              <p> <strong> Lieu de reprsentation : {{$show->location->designation}} </strong>   </p>
         @else
-            <p>Pas de num de telephone</p>
+           
         @endif
 
         @if($show->bookable)
-        <span>{{$show->price}} </span>
+        <span>Le prix pour cette pièce est de {{$show->price}}  euro</span>
        @else 
             <span> sold out </span>
        @endif
