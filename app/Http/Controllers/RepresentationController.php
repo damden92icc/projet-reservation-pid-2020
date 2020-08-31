@@ -133,7 +133,7 @@ class RepresentationController extends Controller
             
             $representation->user()->save(\Auth::user() , ['places'=> $request->input('nbrePlace') ] );
 
-            return redirect()->intended('/profil/'.\Auth::user()->id);
+            return redirect()->intended('home');
     }
 
 

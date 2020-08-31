@@ -44,6 +44,16 @@ class RepresentationTableSeeder extends Seeder
                 'show_slug'=> 'le-cid',
                 'when'=> '2012-10-12 13:30',
             ],
+            [
+                'location_slug'=>null,
+                'show_slug'=> 'antigone',
+                'when'=> '2012-11-12 13:30',
+            ],
+            [
+                'location_slug'=>null,
+                'show_slug'=> 'antigone',
+                'when'=> '2014-11-12 13:30',
+            ],
          
         ];
 
