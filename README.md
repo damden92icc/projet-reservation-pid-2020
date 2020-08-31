@@ -1,8 +1,9 @@
 # projet-reservation-pid-2020
  
-Télécharger le projet
-Installer des dépendence via compozer
-Importer les DB seed via php artisan db:seed
+ Initialisation:
+- Télécharger le projet
+- Installer des dépendence via compozer
+- Importer les DB seed via php artisan db:seed
 
 Pour se connecter en tant qu'admin:
 1. créer un tilisateurs
