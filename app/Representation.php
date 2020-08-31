@@ -46,6 +46,6 @@ class Representation extends Model
         */
 
         public function user(){
-            return $this->belongsToMany('App\User');
+            return $this->belongsToMany('App\User', 'representation_user', 'representation_id', 'user_id')->withPivot('places');
         }
 }

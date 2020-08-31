@@ -15,13 +15,17 @@ class ShowsImport implements ToModel
     public function model(array $row)
     {
 
-  
+        $show = Show::where('slug', $row[2])->first();
+        if (!$show){
+            $show = new Show([
+                'title'     => $row['title'],
+                'slug'    => $row['slug'] ?? str_replace(' ', '-', trim(row['title']) ) , 
+                ''
+             ]);
+        }
+
+        return $show;
         
-        return new Show([
-            'title'     => $row[1],
-            'slug'    => $row[2], 
-     
-         ]);
         
     }
 }

@@ -4,6 +4,7 @@
 
 @section('content')
 
+
 <h1> Liste des {{$resource}} </h1>
 
 <br/>
@@ -11,19 +12,26 @@
 
     <h2> Trié les spectacle </h2>
   
+<div class="card">
+<div class="card-body">
 
 <table id="show-listing" class="table" >
     <thead>
       <tr>
         <th>Titre</th>
         <th>Description</th>
-        <th>Bookable</th>
         <th>Price</th>
+        <th>Bookable</th>
+       <th>  </th>
     
       </tr>
     </thead>
   </table>
 
+
+
+</div>
+</div>
 
 
 <a href="{{ route('Export show xls') }}"> export </a>
@@ -72,7 +80,12 @@ function feedingData (){
             {"data": "title"},
             {"data": "description"},
             {"data": "price"},
-            {"data": "bookable"}
+            {"data": "bookable"},
+            {"render":function(data, type, row, meta){
+              var link = '{{ route('shows') }}/' + row.id;
+              return "<a href='"+link+"'> info </a> "; 
+            }},
+            
             ]
         });
 };

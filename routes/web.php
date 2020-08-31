@@ -26,8 +26,8 @@ use Illuminate\Support\Facades\Route;
       
 
         Route::group(['prefix'=>'artist'], function(){          
-            Route::get('/artist', ['as'=>'artist listing', 'uses'=>'ArtistController@index']);
-            Route::get('artist/{id}', ['as'=>'artist details', 'uses'=>'ArtistController@show'])->where(['id'=> '[0-9]+']);
+            Route::get('/', ['as'=>'artist listing', 'uses'=>'ArtistController@index']);
+            Route::get('/{id}', ['as'=>'artist details', 'uses'=>'ArtistController@show'])->where(['id'=> '[0-9]+']);
         });
 
             
@@ -76,30 +76,29 @@ use Illuminate\Support\Facades\Route;
         Auth::routes();
 
         // Display Profil and update
-    
-          Route::group(['prefix'=>'profil'], function(){          
+        Route::group(['prefix'=>'profil'], function(){          
             Route::get('/{user}',  ['as'=>'my profil', 'uses'=>'ProfilController@show']);
             Route::get('/{user}/edit',  ['as'=>'profil edit', 'uses'=>'ProfilController@edit']);
             Route::patch('/{user}',  ['as'=>'profil update', 'uses'=>'ProfilController@update']);
         });
 
+        Route::GET('/booking/{id}',  ['as'=>'booking get place', 'uses'=>'RepresentationController@bookingForm'])->where(['id'=> '[0-9]+']);
+        Route::POST('/booking',  ['as'=>'booking place', 'uses'=>'RepresentationController@reservationPlace']); 
 
-
-
-
-
-        /**
-         * ==============================
-         * Admin routes
-         * ==============================
-         */
+/**
+ * ==============================
+ * Admin routes
+ * ==============================
+ */
     
 
         Route::group(['prefix'=>'/admin', 'middleware'=>'isAdmin'], function(){    
             
             // Show mangement
             Route::get('show/add', ['as'=>'shows add', 'uses'=>'ShowController@create']);
+            Route::get('show/edit/{show_id}', ['as'=>'shows edit', 'uses'=>'ShowController@edit']);
             Route::pOST('show/store', ['as'=>'show store', 'uses'=>'ShowController@store']);
+
             Route::get('/export-shows', ['as'=>'Export show xls', 'uses'=>'ShowExportController@export']);
              Route::post('/import-shows', ['as'=>'Import show xls', 'uses'=>'ShowsImportController@import']);
             // create representation
@@ -109,6 +108,8 @@ use Illuminate\Support\Facades\Route;
             // Artist management
             Route::group(['prefix'=>'/artist'], function(){          
                 Route::get('/add', ['as'=>'artist add', 'uses'=>'ArtistController@create']);
+                Route::get('/edit/{artist}', ['as'=>'artist edit', 'uses'=>'ArtistController@edit']);
+                Route::post('/update/{artist}', ['as'=>'artist update', 'uses'=>'ArtistController@update']);
                 Route::post('/store', ['as'=>'artist store', 'uses'=>'ArtistController@store']);
                 Route::post('/store-many', ['as'=>'artist store many', 'uses'=>'ArtistController@storeMany']);
             });

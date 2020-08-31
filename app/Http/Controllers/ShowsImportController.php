@@ -20,7 +20,7 @@ class ShowsImportController extends Controller
 
      $request->validate([
 
-        'file' => 'required|mimes:pdf,xlx,csv,xlsx|max:2048',
+        'file' => 'required|mimes:pdf,xlx,csv,xlsx,xml|max:2048',
 
     ]);
 
