@@ -5,7 +5,12 @@
 @section('content')
 
 
-<h1> Liste des {{$resource}} </h1>
+
+<h1> Bienvenu sur notre plateforme </h1>
+<br/>
+
+  <h2>Découvrver la liste de nos  {{$resource}} </h2>
+
 
 <br/>
 <br/>
@@ -34,14 +39,15 @@
 </div>
 
 
+
+
+
+
+
+@if (!Auth::guest())
+@admin
+
 <a href="{{ route('Export show xls') }}"> export </a>
-
-
-
-
-
-
-
 <form action="{{ route('Import show xls') }}" method="POST" enctype="multipart/form-data">
 
 @csrf
@@ -50,6 +56,8 @@
 </form>
 
 
+@endadmin
+@endif
 
 
 
@@ -83,7 +91,7 @@ function feedingData (){
             {"data": "bookable"},
             {"render":function(data, type, row, meta){
               var link = '{{ route('shows') }}/' + row.id;
-              return "<a href='"+link+"'> info </a> "; 
+              return "<a href='"+link+"'> Detail </a> "; 
             }},
             
             ]

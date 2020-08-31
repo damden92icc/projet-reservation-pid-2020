@@ -76,14 +76,18 @@ use Illuminate\Support\Facades\Route;
         Auth::routes();
 
         // Display Profil and update
-        Route::group(['prefix'=>'profil'], function(){          
+        Route::group(['prefix'=>'profil', 'middleware'=>'auth'], function(){          
             Route::get('/{user}',  ['as'=>'my profil', 'uses'=>'ProfilController@show']);
             Route::get('/{user}/edit',  ['as'=>'profil edit', 'uses'=>'ProfilController@edit']);
             Route::patch('/{user}',  ['as'=>'profil update', 'uses'=>'ProfilController@update']);
         });
 
-        Route::GET('/booking/{id}',  ['as'=>'booking get place', 'uses'=>'RepresentationController@bookingForm'])->where(['id'=> '[0-9]+']);
-        Route::POST('/booking',  ['as'=>'booking place', 'uses'=>'RepresentationController@reservationPlace']); 
+        Route::group(['prefix'=>'/booking', 'middleware'=>'auth'], function(){          
+            Route::GET('/{id}',  ['as'=>'booking get place', 'uses'=>'RepresentationController@bookingForm'])->where(['id'=> '[0-9]+']);
+            Route::POST('/',  ['as'=>'booking place', 'uses'=>'RepresentationController@reservationPlace']); 
+        });
+
+       
 
 /**
  * ==============================
@@ -129,7 +133,7 @@ use Illuminate\Support\Facades\Route;
 
             // Location management
             Route::get('/location/add', ['as'=>'location add', 'uses'=>'LocationController@create']);
-            Route::patch('/location/store', ['as'=>'location store', 'uses'=>'LocationController@store']);
+            Route::POST('/location/store', ['as'=>'location store', 'uses'=>'LocationController@store']);
 
             // fetching and storing Theatre C.
             Route::get('/api-th', ['as'=>'API th listing show', 'uses'=>'APIController@index']);
