@@ -10,7 +10,7 @@
     
         @if($show->poster_url)
 
-             <p>   <img src="{{asset('/public/uploads/'.$show->poster_url) }}" alt="{{$show->poster_url}}" width="200"> </p>
+             <p>   <img src="{{asset('images/'.$show->poster_url) }}" alt="{{$show->poster_url}}" width="200"> </p>
         @else
             <p>Pas d'image'</p>
         @endif
