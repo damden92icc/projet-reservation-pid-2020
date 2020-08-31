@@ -7,46 +7,42 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
 |
 */
 
-
-
 /**
- * 
- *  Route for guest
- * */
+ * ==============================
+ * Guest routes
+ * ==============================
+ */
+
+
 
 
     Route::group(['prefix'=>'/'], function(){
         Route::get('/', ['as'=>'home welcome', 'uses'=>'ShowController@index']);
         Route::get('/home', ['as'=>'home', 'uses'=>'ShowController@index']);
         Route::get('/location', ['as'=>'location listing', 'uses'=>'LocationController@index']);
-        Route::get('/artist', ['as'=>'artist listing', 'uses'=>'ArtistController@index']);
-    });
-
-        // display artist 
+      
 
         Route::group(['prefix'=>'artist'], function(){          
-            Route::get('/{id}', ['as'=>'artist details', 'uses'=>'ArtistController@show'])->where(['id'=> '[0-9]+']);
+            Route::get('/artist', ['as'=>'artist listing', 'uses'=>'ArtistController@index']);
+            Route::get('artist/{id}', ['as'=>'artist details', 'uses'=>'ArtistController@show'])->where(['id'=> '[0-9]+']);
+        });
+
+            
+       // Display Artist Type
+       Route::group(['prefix'=>'type'], function(){
+        Route::get('/', 'TypeController@index');
+        Route::get('/{id}', 'TypeController@show')->where(['id'=> '[0-9]+']);
         });
 
         
-       // Display Artist Type
-          Route::group(['prefix'=>'type'], function(){
-                Route::get('/', 'TypeController@index');
-                Route::get('/{id}', 'TypeController@show')->where(['id'=> '[0-9]+']);
-        });
-
         // display Locality
         Route::group(['prefix'=>'locality'], function(){
             Route::get('/', ['as'=>'locality listing', 'uses'=>'LocalityController@index']);
             Route::get('/{id}', 'LocalityController@show')->where(['id'=> '[0-9]+']);
         });
-
         // display Location
         Route::group(['prefix'=>'location'], function(){
             Route::get('/{id}', 'LocationController@show')->where(['id'=> '[0-9]+']);
@@ -66,9 +62,17 @@ use Illuminate\Support\Facades\Route;
             Route::get('representation', 'RepresentationController@index');
             Route::get('representation/{id}', 'RepresentationController@show')->where(['id'=> '[0-9]+']);
         });
+
+    });
+
         
-  
-    
+/**
+ * ==============================
+ * Ahtnetficate user routes
+ * ==============================
+ */
+
+         
         Auth::routes();
 
         // Display Profil and update
@@ -79,10 +83,7 @@ use Illuminate\Support\Facades\Route;
             Route::patch('/{user}',  ['as'=>'profil update', 'uses'=>'ProfilController@update']);
         });
 
-        Route::group(['prefix'=>'role'], function(){          
-            Route::get('/', 'RoleController@index');
-            Route::get('/{id}', 'RoleController@show');
-        });
+
 
 
 
@@ -92,44 +93,47 @@ use Illuminate\Support\Facades\Route;
          * Admin routes
          * ==============================
          */
+    
 
-          // CRUD Artist
-          Route::group(['prefix'=>'/admin/artist'], function(){          
-            Route::get('/add', ['as'=>'artist add', 'uses'=>'ArtistController@create']);
-            Route::post('/store', ['as'=>'artist store', 'uses'=>'ArtistController@store']);
-            Route::post('/store-many', ['as'=>'artist store many', 'uses'=>'ArtistController@storeMany']);
-        });
-         
-        
-        // CRUD locality
-            Route::group(['prefix'=>'/admin/locality'], function(){          
-            Route::get('/add', ['as'=>'locality add', 'uses'=>'LocalityController@create']);
-            Route::post('locality/store', ['as'=>'locality store', 'uses'=>'LocalityController@store']);
-            Route::get('locality/select-json', ['as'=>'locality select json', 'uses'=>'LocalityController@selectJson']);
+        Route::group(['prefix'=>'/admin', 'middleware'=>'isAdmin'], function(){    
+            
+            // Show mangement
+            Route::get('show/add', ['as'=>'shows add', 'uses'=>'ShowController@create']);
+            Route::pOST('show/store', ['as'=>'show store', 'uses'=>'ShowController@store']);
+            Route::get('/export-shows', ['as'=>'Export show xls', 'uses'=>'ShowExportController@export']);
+             Route::post('/import-shows', ['as'=>'Import show xls', 'uses'=>'ShowsImportController@import']);
+            // create representation
+            Route::POST('/representation-store', ['as'=>'representation store', 'uses'=>'RepresentationController@store']);
+
+
+            // Artist management
+            Route::group(['prefix'=>'/artist'], function(){          
+                Route::get('/add', ['as'=>'artist add', 'uses'=>'ArtistController@create']);
+                Route::post('/store', ['as'=>'artist store', 'uses'=>'ArtistController@store']);
+                Route::post('/store-many', ['as'=>'artist store many', 'uses'=>'ArtistController@storeMany']);
+            });
+            
+            // Role
+            Route::group(['prefix'=>'role'], function(){          
+                Route::get('/', 'RoleController@index');
+                Route::get('/{id}', 'RoleController@show');
+            });
+            
+            // Locality Management
+            Route::group(['prefix'=>'/locality'], function(){          
+                Route::get('/add', ['as'=>'locality add', 'uses'=>'LocalityController@create']);
+                Route::post('locality/store', ['as'=>'locality store', 'uses'=>'LocalityController@store']);
+                Route::get('locality/select-json', ['as'=>'locality select json', 'uses'=>'LocalityController@selectJson']);
+            }); 
+
+            // Location management
+            Route::get('/location/add', ['as'=>'location add', 'uses'=>'LocationController@create']);
+            Route::patch('/location/store', ['as'=>'location store', 'uses'=>'LocationController@store']);
+
+            // fetching and storing Theatre C.
+            Route::get('/api-th', ['as'=>'API th listing show', 'uses'=>'APIController@index']);
+            Route::get('/api-th-single/{showSlug}', ['as'=>'API th single show', 'uses'=>'APIController@displaySingle']);
         });    
-
-            // CRUD Lcation
-        Route::group(['prefix'=>'/admin/location'], function(){          
-            Route::get('/add', ['as'=>'location add', 'uses'=>'LocationController@create']);
-            Route::patch('/store', ['as'=>'location store', 'uses'=>'LocationController@store']);
-         
-        });    
-
-            // adding show
-        Route::group(['prefix'=>'/admin/show', 'middleware'=>'isAdmin'], function(){          
-            Route::get('/add', ['as'=>'shows add', 'uses'=>'ShowController@create']);
-            Route::pOST('/store', ['as'=>'show store', 'uses'=>'ShowController@store']);
-          
-        });    
-
-
-        Route::get('/api-th', ['as'=>'API th listing show', 'uses'=>'APIController@index']);
-        Route::get('/api-th-single/{showSlug}', ['as'=>'API th single show', 'uses'=>'APIController@displaySingle']);
-
-
-
-        Route::pOST('/representation-store', ['as'=>'representation store', 'uses'=>'RepresentationController@store']);
-          
 
 
 
@@ -147,9 +151,8 @@ use Illuminate\Support\Facades\Route;
 
 
 
-        Route::get('/export-shows', ['as'=>'Export show xls', 'uses'=>'ShowExportController@export']);
-        Route::post('/import-shows', ['as'=>'Import show xls', 'uses'=>'ShowsImportController@import']);
+      
 
 
-        // RSS
+        // RSS routing ( from Laravel-rss Feed)
         Route::feeds();
