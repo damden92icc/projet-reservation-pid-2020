@@ -9,7 +9,8 @@
 
     
         @if($show->poster_url)
-             <p>   <img src="{{asset('images/'.$show->poster_url) }}" alt="{{$show->poster_url}}" width="200"> </p>
+
+             <p>   <img src="{{asset('/public/uploads/'.$show->poster_url) }}" alt="{{$show->poster_url}}" width="200"> </p>
         @else
             <p>Pas d'image'</p>
         @endif
@@ -95,7 +96,7 @@
 
 {{csrf_field()}}
 <div class="form-group {{ $errors->has('when') ? 'has-error' : '' }}">
-    <label for="when"> when </label>
+    <label for="when"> when Fromat a inserer : 2012-11-11 13:30:00 </label>
     <input type="text" id="when" name="when" class="form-control" value="{{old('when')}}">
 
     @if($errors->has('when'))
@@ -104,13 +105,12 @@
 </div>
 
 <div class="form-group {{ $errors->has('location_id') ? 'has-error' : '' }}">
-    <label for="location_id"> location </label>
-    <input type="text" id="location_id" name="location_id" class="form-control" value="{{old('location_id')}}">
+        <label for="location_id">location_id</label>
+        <select id="location_id" name="location_id" class="form-control browser-default" ></select>
 
-    @if($errors->has('location_id'))
-        <span class="text-danger"> <strong> {{$errors->first('location_id')}} </strong> </span>
-    @endif
-</div>
+            <span class="text-danger" hidden id="error-loc"> <strong> Ce champs ne peut etre vide</strong> </span>
+    
+    </div>
 
 
 
@@ -130,4 +130,34 @@
 
 
 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+<script>
+
+$('#location_id').select2({
+      
+      minimumInputLength: 3,
+        ajax: {
+            url:"{{route('location select json') }}",
+            datatype:'json',
+            data: function(param){
+                var query = {
+                    search: param.term,
+                    type:'public'
+                }
+                return query;
+            },
+            processResults: function (data){
+                return {
+                    results: $.map(data, function(item) {
+                        return {
+                            text : item.designation,
+                            id: $.parseJSON(item.id),
+                        }
+                    } )
+                }
+            }
+        }
+    });
+</script>
 @endsection
