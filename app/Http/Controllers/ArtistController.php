@@ -41,8 +41,9 @@ class ArtistController extends Controller
      */
     public function store(Request $request)
     {
+        return $this->update($request,  new Artist);
         //
-        $messages = [
+      /*  $messages = [
             'requiered' => 'Ce champs ne peut etre vide',
         ];
 
@@ -61,6 +62,7 @@ class ArtistController extends Controller
         $newArtist->save();
 
         return redirect()->intended('/artist/'.$newArtist->id);
+        */
     }
 
     public function storeMany(request $request){
@@ -105,9 +107,12 @@ class ArtistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Artist $artist)
     {
-        //
+
+        return view ('artist.create', [
+            'artist'=> $artist,
+        ]);
     }
 
     /**
@@ -117,9 +122,27 @@ class ArtistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Artist $artist)
     {
-        //
+        $messages = [
+            'requiered' => 'Ce champs ne peut etre vide',
+        ];
+
+        $rules = [
+            'firstname'=>'required|max:200',
+            'lastname'=> 'required|max:200',
+        ];
+
+        Validator::make($request->all(), $rules, $messages)->validate();
+
+       
+
+        $artist->firstname = $request->input('firstname');
+        $artist->lastname = $request->input('lastname');
+
+        $artist->save();
+
+        return redirect()->intended('/artist/'.$artist->id);
     }
 
     /**

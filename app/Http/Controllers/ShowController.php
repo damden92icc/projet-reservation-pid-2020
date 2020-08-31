@@ -153,7 +153,7 @@ class ShowController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('show.edit', ['old' => Show::find($id)]);
     }
 
     /**
