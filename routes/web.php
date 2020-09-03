@@ -22,8 +22,7 @@ use Illuminate\Support\Facades\Route;
     Route::group(['prefix'=>'/'], function(){
         Route::get('/', ['as'=>'home welcome', 'uses'=>'ShowController@index']);
         Route::get('/home', ['as'=>'home', 'uses'=>'ShowController@index']);
-        Route::get('/location', ['as'=>'location listing', 'uses'=>'LocationController@index']);
-      
+           
 
         Route::group(['prefix'=>'artist'], function(){          
             Route::get('/', ['as'=>'artist listing', 'uses'=>'ArtistController@index']);
@@ -45,7 +44,8 @@ use Illuminate\Support\Facades\Route;
         });
         // display Location
         Route::group(['prefix'=>'location'], function(){
-            Route::get('/{id}', 'LocationController@show')->where(['id'=> '[0-9]+']);
+            Route::get('/', ['as'=>'location listing', 'uses'=>'LocationController@index']);
+            Route::get('/{id}',[ 'as'=> 'location ' ,'user'=>'LocationController@show']) ;
         });
         
         // display show
@@ -104,7 +104,7 @@ use Illuminate\Support\Facades\Route;
             Route::pOST('show/store', ['as'=>'show store', 'uses'=>'ShowController@store']);
 
             Route::get('/export-shows', ['as'=>'Export show xls', 'uses'=>'ShowExportController@export']);
-             Route::post('/import-shows', ['as'=>'Import show xls', 'uses'=>'ShowsImportController@import']);
+            Route::post('/import-shows', ['as'=>'Import show xls', 'uses'=>'ShowsImportController@import']);
             // create representation
             Route::POST('/representation-store', ['as'=>'representation store', 'uses'=>'RepresentationController@store']);
 

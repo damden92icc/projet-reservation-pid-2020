@@ -132,7 +132,7 @@ class LocationController extends Controller
     
     public function datatableJson(){
 
-        $locations = Location::select( 'designation', 'address', 'phone', 'website' );
+        $locations = Location::select( 'id', 'designation', 'address', 'phone', 'website', 'slug' );
         return Datatables::of($locations)->make(true);
     }
 
