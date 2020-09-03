@@ -44,7 +44,7 @@
      @endif
 
      <h2> Liste des artistes </h2>
-     
+      
    
     @if(isset($collaborateurs['auteur']))
     <p> Auteurs </p>

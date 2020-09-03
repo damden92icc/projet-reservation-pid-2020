@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Representation;
 use Carbon\Carbon;
 use Illuminate\SUpport\Facades\Validator;
+use DB;
 
 class RepresentationController extends Controller
 {
@@ -143,6 +144,18 @@ class RepresentationController extends Controller
         
         return view('representation.booking', [
             'represensation'=> $representation,
+        ]);
+    }
+
+
+    public function listingBooking(Request $request){
+
+
+        $user = (\Auth::user());
+  
+ 
+        return view('representation.listing', [
+            'user'=> $user,
         ]);
     }
 }
