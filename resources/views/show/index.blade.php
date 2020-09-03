@@ -11,7 +11,6 @@
 
   <h2>Découvrver la liste de nos  {{$resource}} </h2>
 
-
 <br/>
 <br/>
 
@@ -37,10 +36,6 @@
 
 </div>
 </div>
-
-
-
-
 
 
 

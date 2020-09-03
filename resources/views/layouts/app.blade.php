@@ -92,11 +92,9 @@
                             </li>
                             
                             
-                   <li class="nav-item">
-                        <a class="nav-link" href="{{ route('shows add') }}"> Reserver</a>
-                    </li>
+                
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('artist add') }}"> Mes eservation</a>
+                        <a class="nav-link" href="{{ route('my booking') }}"> Mes reservation</a>
                     </li>
                  
                  @admin 

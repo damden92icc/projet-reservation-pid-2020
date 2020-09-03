@@ -10,6 +10,7 @@ class ProfilController extends Controller
     // show
 
     public function show(User $user){
+
         return view('profil.show', compact('user')
         );
         

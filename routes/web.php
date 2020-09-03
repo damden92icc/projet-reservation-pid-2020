@@ -77,17 +77,17 @@ use Illuminate\Support\Facades\Route;
 
         // Display Profil and update
         Route::group(['prefix'=>'profil', 'middleware'=>'auth'], function(){          
-            Route::get('/{user}',  ['as'=>'my profil', 'uses'=>'ProfilController@show']);
+            Route::get('/{user}',  ['as'=>'my profil', 'uses'=>'ProfilController@show'])->where(['id'=> '[0-9]+']);
             Route::get('/{user}/edit',  ['as'=>'profil edit', 'uses'=>'ProfilController@edit']);
             Route::patch('/{user}',  ['as'=>'profil update', 'uses'=>'ProfilController@update']);
         });
 
         Route::group(['prefix'=>'/booking', 'middleware'=>'auth'], function(){          
             Route::GET('/{id}',  ['as'=>'booking get place', 'uses'=>'RepresentationController@bookingForm'])->where(['id'=> '[0-9]+']);
+            Route::GET('/my-booking',  ['as'=>'my booking', 'uses'=>'RepresentationController@listingBooking'])->where(['id'=> '[0-9]+']);
             Route::POST('/',  ['as'=>'booking place', 'uses'=>'RepresentationController@reservationPlace']); 
         });
 
-       
 
 /**
  * ==============================
